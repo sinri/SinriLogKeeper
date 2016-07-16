@@ -11,6 +11,12 @@ if($act=='load_files'){
 		responseInJson('fail',$e->getMessage());	
 	}
 }elseif($act=='search_file'){
+	$username=getRequest('username');
+	$password=getRequest('password');
+	$auth=SinriLogKeeperWorker::checkUserAuth($username,$password);
+	if(!$auth){
+		responseInJson('fail','Log Locked.');
+	}
 	$filename=getRequest('filename','');
 	$filter_method=getRequest('filter_method','text');
 	$filter=getRequest('filter','');
@@ -44,6 +50,9 @@ if($act=='load_files'){
 		$(document).ready(function(){
 			se_loading_instance=se_loading('loading_div');
 			loadFiles();
+			<?php if(!SinriLogKeeperWorker::checkUseUserAuth()){ ?>
+			$("#user_auth_row").css('display','none');
+			<?php }?>
 		})
 	</script>
 </head>
@@ -57,6 +66,10 @@ if($act=='load_files'){
 		(Ecclesiastes 12:14 KJV)
 	</blockquote>
 	<div id="controller_pane">
+		<div class="condition_row" id="user_auth_row">
+			Username <input type="text" id="username">
+			Password <input type="password" id="password">
+		</div>
 		<div class="condition_row">
 			File
 			<select id="file_select">
@@ -72,10 +85,10 @@ if($act=='load_files'){
 		</div>
 		<div class="condition_row">
 			Quick Ranger Setter
-			<a href="javascript:void(0);" onclick="rangeTool_firstLines(2000)">First 2000 Lines</a>
-			<a href="javascript:void(0);" onclick="rangeTool_lastLines(2000)">Last 2000 Lines</a>
-			<a href="javascript:void(0);" onclick="rangeTool_prevLines(2000)">Previous 2000 Lines</a>
-			<a href="javascript:void(0);" onclick="rangeTool_nextLines(2000)">Next 2000 Lines</a>
+			<a href="javascript:void(0);" onclick="rangeTool_firstLines(1000)">First 1000 Lines</a>
+			<a href="javascript:void(0);" onclick="rangeTool_lastLines(1000)">Last 1000 Lines</a>
+			<a href="javascript:void(0);" onclick="rangeTool_prevLines(1000)">Previous 1000 Lines</a>
+			<a href="javascript:void(0);" onclick="rangeTool_nextLines(1000)">Next 1000 Lines</a>
 		</div>
 		<div class="condition_row">
 			Filter Method 
@@ -96,7 +109,16 @@ if($act=='load_files'){
 	</div>
 	<div id="loading_div"></div>
 	<div id="footer_div">
-		<a href="http://github.everstray.com/SinriLogKeeper/">Version 1.0</a> | Copyright 2016 Sinri Edogawa | <a href="https://raw.githubusercontent.com/sinri/SinriLogKeeper/master/LICENSE">License GPLv2</a> 
+		<a href="http://github.everstray.com/SinriLogKeeper/">Version 1.1</a> 
+		<?php if(!SinriLogKeeperWorker::checkUseUserAuth()){ 
+			// echo ""
+		}else{
+			echo " | UserAuth Protecting ";
+		}?>
+		| 
+		Copyright 2016 Sinri Edogawa 
+		| 
+		<a href="https://raw.githubusercontent.com/sinri/SinriLogKeeper/master/LICENSE">License GPLv2</a> 
 	</div>
 </body>
 </html>

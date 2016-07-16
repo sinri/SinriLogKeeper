@@ -5,7 +5,7 @@ require_once('config.php');
 */
 class SinriLogKeeperWorker
 {
-	private static $max_result_line_count=3000;
+	private static $max_result_line_count=2000;
 
 	function __construct()
 	{
@@ -45,6 +45,15 @@ class SinriLogKeeperWorker
 			if($is_match)return true;
 		}
 		return false;
+	}
+
+	public static function checkUseUserAuth(){
+		return SinriLogKeeperConfig::getInstance()->isUseUserAuth();
+	}
+
+	public static function checkUserAuth($username,$password){
+		$r = SinriLogKeeperConfig::getInstance()->userAuth($username,$password);
+		return $r;
 	}
 
 	public static function filterTargetFile($filename,$filter_method='text',$filter='',$line_begin=0,$line_end=0){

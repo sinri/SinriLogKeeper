@@ -28,6 +28,8 @@ function loadFiles(){
 	})
 }
 function searchWithFilter(){
+	var username=$("#username").val();
+	var password=$("#password").val();
 	var filename=$("#file_select").val();
 	var filter_method=$("#filter_method_select").val();
 	var filter_text=$("#filter_text").val();
@@ -42,6 +44,8 @@ function searchWithFilter(){
 		url:'index.php?act=search_file',
 		method:'POST',
 		data: {
+			username:username,
+			password:password,
 			filename:filename,
 			filter_method:filter_method,
 			filter:filter_text,
