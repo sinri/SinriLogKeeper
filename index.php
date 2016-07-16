@@ -96,7 +96,7 @@ if($act=='load_files'){
 	</div>
 	<div id="loading_div"></div>
 	<div id="footer_div">
-		Version 1.0 | Copyright 2016 Sinri Edogawa | <a href="https://raw.githubusercontent.com/sinri/SinriLogKeeper/master/LICENSE">License GPLv2</a> 
+		<a href="http://github.everstray.com/SinriLogKeeper/">Version 1.0</a> | Copyright 2016 Sinri Edogawa | <a href="https://raw.githubusercontent.com/sinri/SinriLogKeeper/master/LICENSE">License GPLv2</a> 
 	</div>
 </body>
 </html>
