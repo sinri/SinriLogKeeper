@@ -2,6 +2,8 @@
 require_once('worker.php');
 require_once('slk_tool.php');
 
+$display_data=SinriLogKeeperWorker::displayData();
+
 $act=getRequest('act');
 if($act=='load_files'){
 	try {
@@ -39,7 +41,7 @@ if($act=='load_files'){
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>SinriLogKeeper</title>
+	<title><?php echo $display_data['title']; ?> - SinriLogKeeper</title>
 	<script src="./jquery-2.2.4.min.js"></script>
 	<script src="./se_loading/se_loading.js"></script>
 	<link rel="stylesheet" type="text/css" href="./se_loading/se_loading.css">
@@ -57,7 +59,7 @@ if($act=='load_files'){
 	</script>
 </head>
 <body>
-	<h1>SinriLogKeeper</h1>
+	<h1>SinriLogKeeper for <?php echo $display_data['header']; ?></h1>
 	<blockquote>
 		For God shall bring every work into judgment, 
 		with every secret thing, 

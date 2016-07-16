@@ -12,6 +12,8 @@ class SinriLogKeeperConfig
 	private $useUserAuth=false;
 	private $user_list=array();
 
+	private $display=array();
+
 	function __construct($config_path=null)
 	{
 		if($config_path==null){
@@ -22,12 +24,17 @@ class SinriLogKeeperConfig
 
 		$this->useUserAuth=false;
 		$this->user_list=array();
+		$this->display=array();
 	}
 
 	private function load(){
 		$this->useUserAuth=false;
 		$this->user_list=array();
 		$this->paths=array();
+		$this->display=array(
+			'title'=>'SampleProject',
+			'header'=>'SampleProject',
+		);
 		if(file_exists($this->config_path)){
 			$text=file_get_contents($this->config_path);
 			$lines=preg_split('/[\n\r]+/', $text);
@@ -35,18 +42,27 @@ class SinriLogKeeperConfig
 			foreach ($lines as $line) {
 				if(in_array($line[0], array('#',' ',"\t","\r","\n"))){
 					continue;
-				}elseif(in_array($line[0], array('!'))){
+				}
+				elseif(in_array($line[0], array('!'))){
 					// Options
 					$items=explode(' ', $line);
 					if($items[0]=='!OptionUserAuth'){
 						if($items[1]=='ON'){
 							$this->useUserAuth=true;
 						}
-					}elseif($items[0]=='!User'){
+					}
+					elseif($items[0]=='!User'){
 						$this->user_list[$items[1]]=$items[2];
 					}
+					elseif($items[0]=='!OptionTitle'){
+						$this->display['title']=$items[1];
+					}
+					elseif($items[0]=='!OptionHeader'){
+						$this->display['header']=$items[1];
+					}
 					// print_r($items);
-				}else{
+				}
+				else{
 					$group=strstr($line, ' ',true);
 					$pattern=strstr($line, ' ');
 					$group=trim($group.'');
@@ -89,6 +105,10 @@ class SinriLogKeeperConfig
 		}else{
 			return true;
 		}
+	}
+
+	public function getDisplayData(){
+		return $this->display;
 	}
 
 	public static function getInstance($config_path=null){

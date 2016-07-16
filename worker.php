@@ -56,6 +56,17 @@ class SinriLogKeeperWorker
 		return $r;
 	}
 
+	public static function displayData(){
+		$displayData=SinriLogKeeperConfig::getInstance()->getDisplayData();
+		if(!$displayData){
+			$displayData=array(
+				'title'=>'SampleProject',
+				'header'=>'SampleProject',
+			);
+		}
+		return $displayData;
+	}
+
 	public static function filterTargetFile($filename,$filter_method='text',$filter='',$line_begin=0,$line_end=0){
 		$handle = fopen($filename, "r");
 		$list=array();
