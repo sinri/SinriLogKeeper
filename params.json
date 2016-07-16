@@ -1,0 +1,6 @@
+{
+  "name": "SinriLogKeeper",
+  "tagline": "View logs, search logs.",
+  "body": "# SinriLogKeeper\r\n\r\nView Log From Machine\r\n\r\nVersion 1.0\r\n\r\n----\r\n\r\n## Install\r\n\r\n1. Just clone or download this project to your server with PHP support.\r\n2. Edit the `slk.config` file, set the log file paths. Shell wildcard pattern supported.\r\n3. Make this project visitable, and visit the `index.php`.\r\n\r\n## Features\r\n\r\n* Line Range Support\r\n* Three search methods including Regular Expression support\r\n* Result Limitation to protect the server\r\n\r\n## Reason\r\n\r\nI was trapped with Filebeat and Logstash, as filebeat always lost connection to logstash server on Debian.\r\n\r\nWhy not visit the log files directly on server.",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}

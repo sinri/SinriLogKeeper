@@ -1,0 +1,84 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>SinriLogKeeper by sinri</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-dark.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>SinriLogKeeper</h1>
+        <p>View logs, search logs.</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/sinri/SinriLogKeeper" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/sinri/SinriLogKeeper/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/sinri/SinriLogKeeper/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h1>
+<a id="sinrilogkeeper" class="anchor" href="#sinrilogkeeper" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SinriLogKeeper</h1>
+
+<p>View Log From Machine</p>
+
+<p>Version 1.0</p>
+
+<hr>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h2>
+
+<ol>
+<li>Just clone or download this project to your server with PHP support.</li>
+<li>Edit the <code>slk.config</code> file, set the log file paths. Shell wildcard pattern supported.</li>
+<li>Make this project visitable, and visit the <code>index.php</code>.</li>
+</ol>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Features</h2>
+
+<ul>
+<li>Line Range Support</li>
+<li>Three search methods including Regular Expression support</li>
+<li>Result Limitation to protect the server</li>
+</ul>
+
+<h2>
+<a id="reason" class="anchor" href="#reason" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reason</h2>
+
+<p>I was trapped with Filebeat and Logstash, as filebeat always lost connection to logstash server on Debian.</p>
+
+<p>Why not visit the log files directly on server.</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/sinri">sinri</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
