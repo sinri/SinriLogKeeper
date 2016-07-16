@@ -1,0 +1,76 @@
+.color1{ background: #072;}
+.color2{ background: #8ABC3B;}
+ 
+@-webkit-keyframes loadRotate{
+from{ -webkit-transform:rotateZ(0deg);}
+to{ -webkit-transform:rotateZ(360deg);}
+}
+ 
+@-moz-keyframes loadRotate{
+from{ -moz-transform:rotateZ(0deg);}
+to{ -moz-transform:rotateZ(360deg);}
+}
+ 
+#loading{
+width: 80px; height: 80px;
+position: absolute; left:50%; top:50%;
+margin-left:-50px; margin-top: -50px;
+-webkit-animation:loadRotate 3s linear infinite;
+-webkit-animation-fill-mode:both;
+animation:loadRotate 3s linear infinite;
+animation-fill-mode:both;
+padding: 0;margin: 0;
+list-style: none;
+}
+#loading li{ width: 10px; height:12px;
+position: absolute;left:35px; top:35px;
+display:block;
+-webkit-transform:rotateZ(0) translateX(25px);
+transform:rotateZ(0) translateX(25px);
+opacity: 1; border-radius: 50% 0;
+}
+#loading li:nth-child(2){
+-webkit-transform:rotateZ(36deg) translateX(25px);
+transform:rotateZ(36deg) translateX(25px);
+opacity: 0.8;
+}
+#loading li:nth-child(3){
+-webkit-transform:rotateZ(72deg) translateX(25px);
+transform:rotateZ(72deg) translateX(25px);
+opacity: 0.6;
+}
+#loading li:nth-child(4){
+-webkit-transform:rotateZ(108deg) translateX(25px);
+transform:rotateZ(108deg) translateX(25px);
+opacity: 0.4;
+}
+#loading li:nth-child(5){
+-webkit-transform:rotateZ(144deg) translateX(25px);
+transform:rotateZ(144deg) translateX(25px);
+opacity: 0.2;
+}
+#loading li:nth-child(6){
+-webkit-transform:rotateZ(180deg) translateX(25px);
+transform:rotateZ(180deg) translateX(25px);
+opacity: 1;
+}
+#loading li:nth-child(7){
+-webkit-transform:rotateZ(216deg) translateX(25px);
+transform:rotateZ(216deg) translateX(25px);
+opacity: 0.8;
+}
+#loading li:nth-child(8){
+-webkit-transform:rotateZ(252deg) translateX(25px);
+transform:rotateZ(252deg) translateX(25px);
+opacity: 0.6;
+}
+#loading li:nth-child(9){
+-webkit-transform:rotateZ(288deg) translateX(25px);
+transform:rotateZ(288deg) translateX(25px);
+opacity: 0.4;
+}
+#loading li:nth-child(10){
+-webkit-transform:rotateZ(324deg) translateX(25px);
+transform:rotateZ(324deg) translateX(25px);
+opacity: 0.2;
+}
