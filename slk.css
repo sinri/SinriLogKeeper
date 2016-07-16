@@ -22,6 +22,7 @@
 }
 #src_table td pre{
 	margin: 0px;
+	font-family: 'Lucida Console',monospace;
 }
 p.c0 {
 	background: #F8F8F8;
@@ -35,16 +36,23 @@ h1 {
 	font-family: 'Georgia',serif;
 }
 
+blockquote {
+	text-align:center;
+	font-family:serif;
+}
+
 #controller_pane{
 	margin: 10px;
 	border-top: 1px solid gray;
 	border-bottom: 1px solid gray;
+	font-family: 'Verdana', sans-serif;
 }
 #controller_pane div.condition_row{
 	margin: 10px 0;
 }
 #news_pane {
 	margin: 10px;
+	font-family: Courier,monospace;
 }
 #display_pane {
 	margin: 10px;

@@ -58,7 +58,7 @@ if($act=='load_files'){
 </head>
 <body>
 	<h1>SinriLogKeeper</h1>
-	<blockquote style="text-align:center;">
+	<blockquote>
 		For God shall bring every work into judgment, 
 		with every secret thing, 
 		whether it be good, 
