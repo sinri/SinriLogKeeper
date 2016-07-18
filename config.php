@@ -97,7 +97,7 @@ class SinriLogKeeperConfig
 	}
 	public function userAuth($username=null,$password=null){
 		if($this->useUserAuth){
-			if($this->user_list[$username]==$password){
+			if(isset($this->user_list[$username]) && $this->user_list[$username]==$password){
 				return true;
 			}else{
 				return false;
