@@ -25,3 +25,13 @@ Version 1.1
 I was trapped with Filebeat and Logstash, as filebeat always lost connection to logstash server on Debian.
 
 Why not visit the log files directly on server.
+
+## Users
+
+List some here. Of course UserAuth function was used almost on all.
+
+* [Leqee Brand System](https://erpbrand.leqee.com/logs/SinriLogKeeper/)
+* [Leqee WMS Test Environment](http://testwms-slk.leqeewechat.com/)
+* [Leqee WMS Product Environment](http://wms.leqee.com/SinriLogKeeper/)
+* [Leqee WMS Client Test Environment](http://testwmsclient-slk.leqeewechat.com/)
+
