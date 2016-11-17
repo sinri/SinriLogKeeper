@@ -49,13 +49,54 @@ if($act=='load_files'){
 	<link rel="stylesheet" type="text/css" href="./slk.css">
 	<script type="text/javascript">
 		var se_loading_instance=null;
+		var filter_method_mapping={
+			pure_grep:{
+				title:"Grep",
+				readme:"Use Shell GREP command (-n)",
+			},
+			pure_grep_case_insensitive:{
+				title:"Grep Case Insensitive",
+				readme:"Use Shell GREP command, case insensitively (-n -i)",
+			},
+			egrep:{
+				title:"EGrep",
+				readme:"Use Shell GREP command with extended regular expression support (-n -E)",
+			},
+			text:{
+				title:"Match Text Case Sensitive",
+				readme:"Use PHP to filter file content",
+			},
+			text_case_insensitive:{
+				title:"Match Text Case Insensitive",
+				readme:"Use PHP to filter file content, case insensitively",
+			},
+			regex:{
+				title:"PHP-Style Regular Expression",
+				readme:"Use PHP to filter file content, using regular expression",
+			}
+		};
 		$(document).ready(function(){
 			se_loading_instance=se_loading('loading_div');
 			loadFiles();
 			<?php if(!SinriLogKeeperWorker::checkUseUserAuth()){ ?>
 			$("#user_auth_row").css('display','none');
 			<?php }?>
+			writeFilterMethodSelect();
 		})
+		function writeFilterMethodSelect(){
+			var code="";
+			for(var key in filter_method_mapping){
+				code+='<option value="'+key+'">'+filter_method_mapping[key]['title']+'</option>';
+			}
+			$("#filter_method_select").html(code);
+			$("#filter_method_select").on('change',refreshFilterMethodReadme);
+			refreshFilterMethodReadme();
+		}
+		function refreshFilterMethodReadme(){
+			var key=$("#filter_method_select").val();
+			console.log('refreshFilterMethodReadme for '+key)
+			$("#filter_method_readme").html(filter_method_mapping[key]['readme']);
+		}
 	</script>
 </head>
 <body>
@@ -95,10 +136,16 @@ if($act=='load_files'){
 		<div class="condition_row">
 			Filter Method 
 			<select id="filter_method_select">
+				<!-- 
+				<option value="pure_grep">Grep</option>
+				<option value="pure_grep_case_insensitive">Grep Case Insensitive</option>
+				<option value="egrep">EGrep</option>
 				<option value="text">Match Text Case Sensitive</option>
 				<option value="text_case_insensitive">Match Text Case Insensitive</option>
-				<option value="regex">PHP-Style Regular Expression</option>
+				<option value="regex">PHP-Style Regular Expression</option> 
+				-->
 			</select>
+			<span id="filter_method_readme"></span>
 		</div>
 		<div class="condition_row">
 			Filter 
