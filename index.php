@@ -158,7 +158,7 @@ if($act=='load_files'){
 	</div>
 	<div id="loading_div"></div>
 	<div id="footer_div">
-		<a href="http://github.everstray.com/SinriLogKeeper/">Version 1.1</a> 
+		<a href="http://github.everstray.com/SinriLogKeeper/">Version 1.2</a> 
 		<?php if(!SinriLogKeeperWorker::checkUseUserAuth()){ 
 			// echo ""
 		}else{
