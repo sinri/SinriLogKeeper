@@ -21,7 +21,6 @@ class SinriLogKeeperWorker
 		$all_files=array();
 		foreach ($paths as $path_item) {
 			$files=glob($path_item['pattern']);
-			// $all_files=array_merge($all_files,$files);
 			$all_files[$path_item['group']]=$files;
 		}
 		return $all_files;
@@ -96,42 +95,7 @@ class SinriLogKeeperWorker
 		}
 		$line_begin=intval($line_begin);
 		$line_end=intval($line_end);
-		/*
-		// method one
-		$line_diff=abs($line_end-$line_begin);
-		if($line_begin==0 && $line_end==0){
-			$content_range="";
-		}elseif(0<=$line_begin && $line_begin<=$line_end){
-			$content_range="head -n {$line_end}|tail -n {$line_diff}|";
-		}elseif($line_begin<=$line_end && $line_end<=0){
-			$abs_line_begin=-$line_begin;
-			$content_range="tail -n {$abs_line_begin}|tail -n {$line_diff}|";
-		}else{
-			$content_range="echo 'RANGE ERROR, FALLING BACK TO GREP ENTIRE';";
-		}
-		*/
-		/*
-		//method two
-		if($line_begin==0 && $line_end==0){
-			$command="grep {$options} ".escapeshellarg($filter)." ".escapeshellarg($filename)."| head -n ".escapeshellarg(SinriLogKeeperWorker::$max_result_line_count);
-		}else{
-			$total_lines=exec("cat ".escapeshellarg($filename)."|wc -l");
-			$total_lines=intval($total_lines);
-			if($line_begin<0){
-				$line_begin+=$total_lines;
-			}
-			if($line_end<0){
-				$line_end+=$total_lines;
-			}
-			if($line_end==0){
-				$line_end=$total_lines;
-			}
-			$line_diff=abs($line_end-$line_begin);
-			$content_range="head -n {$line_end} ".escapeshellarg($filename)."|tail -n {$line_diff}|";
-			$command=$content_range." grep {$options} ".escapeshellarg($filter)."| head -n ".escapeshellarg(SinriLogKeeperWorker::$max_result_line_count);
-		}
-		*/
-		//method three
+		
 		$total_lines=exec("cat ".escapeshellarg($filename)."|wc -l");
 		$total_lines=intval($total_lines);
 		if($line_begin<0){
@@ -147,7 +111,6 @@ class SinriLogKeeperWorker
 
 		
 		exec($command,$output);
-		//return $output;
 
 		$list=array();
 		// $list['command']=$command;
