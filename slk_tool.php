@@ -25,7 +25,7 @@ function downloadFileAsName($file, $down_name=null){
 		$down_name = $down_name.$suffix; //新文件名，就是下载后的名字
 	}else{
 		$k=pathinfo($file);
-		$down_name=$k['filename'];
+		$down_name=$k['filename'].'.'.$k['extension'];
 	}
 
 	//判断给定的文件存在与否  
