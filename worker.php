@@ -66,17 +66,17 @@ class SinriLogKeeperWorker
 		return $displayData;
 	}
 
-	public static function filterTargetFile($filename,$filter_method='text',$filter='',$line_begin=0,$line_end=0){
+	public static function filterTargetFile($filename,$filter_method='text',$filter='',$line_begin=0,$line_end=0,$around_lines=3,&$command=''){
 		switch ($filter_method) {
 			case 'pure_grep':
 			case 'pure_grep_case_insensitive':
 			case 'egrep':
-				return SinriLogKeeperWorker::filterTargetFile_pure_grep($filename,$filter_method,$filter,$line_begin,$line_end);
+				return SinriLogKeeperWorker::filterTargetFile_pure_grep($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines,$command);
 				break;
 			case 'text':
 			case 'text_case_insensitive':
 			case 'regex':
-				return SinriLogKeeperWorker::filterTargetFile_use_php($filename,$filter_method,$filter,$line_begin,$line_end);
+				return SinriLogKeeperWorker::filterTargetFile_use_php($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines);
 				break;
 			default:
 				throw new Exception("总有刁民想害朕。", 1);
@@ -84,18 +84,18 @@ class SinriLogKeeperWorker
 		}
 	}
 
-	private static function filterTargetFile_pure_grep($filename,$filter_method='pure_grep',$filter='',$line_begin=0,$line_end=0){
+	private static function filterTargetFile_pure_grep($filename,$filter_method='pure_grep',$filter='',$line_begin=0,$line_end=0,$around_lines=3,&$command=''){
 		setlocale(LC_CTYPE, "en_US.UTF-8");
+		$around_lines=intval($around_lines);
 		if($filter_method=='pure_grep'){
-			$options="";
+			$options="-C ".$around_lines." -m ".intval(SinriLogKeeperWorker::$max_result_line_count);
 		}elseif($filter_method=='pure_grep_case_insensitive'){
-			$options="-i";
+			$options="-C ".$around_lines." -i -m ".intval(SinriLogKeeperWorker::$max_result_line_count);
 		}elseif ($filter_method=='egrep') {
-			$options="-E";
+			$options="-C ".$around_lines." -E -m ".intval(SinriLogKeeperWorker::$max_result_line_count);
 		}
 		$line_begin=intval($line_begin);
 		$line_end=intval($line_end);
-		
 		$total_lines=exec("cat ".escapeshellarg($filename)."|wc -l");
 		$total_lines=intval($total_lines);
 		if($line_begin<0){
@@ -107,8 +107,7 @@ class SinriLogKeeperWorker
 		if($line_end==0){
 			$line_end=$total_lines;
 		}
-		$command="cat -n ".escapeshellarg($filename)."|awk '{if($1>={$line_begin} && $1<={$line_end}) print $0}'|grep {$options} ".escapeshellarg($filter)."|head -n ".escapeshellarg(SinriLogKeeperWorker::$max_result_line_count);
-
+		$command="cat -n ".escapeshellarg($filename)."|awk '{if($1>={$line_begin} && $1<={$line_end}) print $0}'|grep {$options} ".escapeshellarg($filter);
 		
 		exec($command,$output);
 
@@ -127,7 +126,7 @@ class SinriLogKeeperWorker
 
 		return $list;
 	}
-	private static function filterTargetFile_use_php($filename,$filter_method='text',$filter='',$line_begin=0,$line_end=0){
+	private static function filterTargetFile_use_php($filename,$filter_method='text',$filter='',$line_begin=0,$line_end=0,$around_lines=3){
 		$handle = fopen($filename, "r");
 		$list=array();
 		if ($handle) {

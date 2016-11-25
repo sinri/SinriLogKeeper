@@ -29,11 +29,21 @@ if($act=='load_files'){
 		if(!$is_readable){
 			responseInJson('fail','想搞注入攻击吗，干得好。');
 		}
-		$list=SinriLogKeeperWorker::filterTargetFile($filename,$filter_method,$filter,$line_begin,$line_end);
-		responseInJson('ok',$list);
+		$list=SinriLogKeeperWorker::filterTargetFile($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines,$command);
+		responseInJson('ok',array('list'=>$list,'command'=>$command));
 	} catch (Exception $e) {
 		responseInJson('fail',$e->getMessage());
 	}
+}elseif($act=='download'){
+	$username=getRequest('username');
+	$password=getRequest('password');
+	$auth=SinriLogKeeperWorker::checkUserAuth($username,$password);
+	if(!$auth){
+		responseInJson('fail','Log Locked.');
+	}
+	$filename=getRequest('filename','');
+	responseFileDownload($filename);
+	exit();
 }
 
 ?>
@@ -118,13 +128,16 @@ if($act=='load_files'){
 			<select id="file_select">
 				<option value='null'>Not Loaded Yet</option>
 			</select>
-			With Limitation of Result Line Count of <?php echo SinriLogKeeperWorker::getMaxResultLineCount();?>.
+			|| Experimental Function: <button onclick='download_this_file()'>download file</button>
 		</div>
 		<div class="condition_row">
 			Line Range From 
 			<input type='text' id="line_begin">
 			To 
 			<input type='text' id="line_end">
+			||
+			Around Lines 
+			<input type="text" id="around_lines" value="10">
 		</div>
 		<div class="condition_row">
 			Quick Ranger Setter
@@ -152,13 +165,16 @@ if($act=='load_files'){
 			<input type="text" id="filter_text" style="width: 300px;">
 			<button onclick="searchWithFilter()">Search</button>
 		</div>
+		<div class="condition_row">
+			With Limitation of Result Line Count of <?php echo SinriLogKeeperWorker::getMaxResultLineCount();?>.
+		</div>
 	</div>
 	<div id="news_pane"></div>
 	<div id="display_pane">
 	</div>
 	<div id="loading_div"></div>
 	<div id="footer_div">
-		<a href="http://github.everstray.com/SinriLogKeeper/">Version 1.2</a> 
+		<a href="http://github.everstray.com/SinriLogKeeper/">Version 1.3</a> 
 		<?php if(!SinriLogKeeperWorker::checkUseUserAuth()){ 
 			// echo ""
 		}else{
