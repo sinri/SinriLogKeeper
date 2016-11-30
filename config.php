@@ -27,7 +27,7 @@ class SinriLogKeeperConfig
 		$this->display=array();
 	}
 
-	private function load(){
+	protected function load(){
 		$this->useUserAuth=false;
 		$this->user_list=array();
 		$this->paths=array();
