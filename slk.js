@@ -35,6 +35,9 @@ function searchWithFilter(){
 	var filter_text=$("#filter_text").val();
 	var line_begin=$("#line_begin").val();
 	var line_end=$("#line_end").val();
+	var around_lines=$("#around_lines").val();
+
+	if(!around_lines){around_lines=0;}
 
 	var params={
 		username:username,
@@ -43,7 +46,8 @@ function searchWithFilter(){
 		filter_method:filter_method,
 		filter:filter_text,
 		line_begin:line_begin,
-		line_end:line_end
+		line_end:line_end,
+		around_lines:around_lines
 	};
 
 	searchWithFilterParmas(params,false);	

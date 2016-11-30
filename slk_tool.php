@@ -13,13 +13,17 @@ function responseInJson($code,$data){
 
 function responseFileDownload($file){
 	// header("Content-type:text/html;charset=utf-8");
-	downloadFileAsName($file);
+	$done=downloadFileAsName($file,null,$error);
+	if(!$done){
+		echo $error;
+	}
+	exit();
 }
  
 /**
  * 文件下载
 **/
-function downloadFileAsName($file, $down_name=null){
+function downloadFileAsName($file, $down_name=null,&$error=''){
 	if($down_name!==null && $down_name!==false){
 		$suffix = substr($file,strrpos($file,'.')); //获取文件后缀
 		$down_name = $down_name.$suffix; //新文件名，就是下载后的名字
@@ -30,7 +34,8 @@ function downloadFileAsName($file, $down_name=null){
 
 	//判断给定的文件存在与否  
 	if(!file_exists($file)){
-		die("您要下载的文件已不存在，可能是被删除");
+		$error="您要下载的文件已不存在，可能是被删除";
+		return false;
 	}  
 	$fp = fopen($file,"r");
 	$file_size = filesize($file);
@@ -48,5 +53,6 @@ function downloadFileAsName($file, $down_name=null){
 		echo $file_con;
 	}  
 	fclose($fp);
+	return true;
 }
  

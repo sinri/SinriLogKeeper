@@ -113,7 +113,7 @@ class SinriLogKeeperWorker
 
 		$list=array();
 		// $list['command']=$command;
-		foreach ($output as $key => $value) {
+		foreach ($output as $value) {
 			$ff=strpos($value, "\t");
 			if($ff!==false){
 				$line_number=trim(substr($value, 0,$ff));
@@ -140,6 +140,13 @@ class SinriLogKeeperWorker
 					$line_end=$total_lines+$line_end;
 				}
 			}
+
+			// -1 for disabled
+			// 0 for waiting for match, cache lastest lines
+			// plus for after match, cache lastest lines
+			$around_status=0;
+			$cache_around_lines=array();
+		    
 		    while (($buffer = fgets($handle)) !== false) {
 		    	$line_number+=1;
 		    	if($line_begin>0 && $line_begin>$line_number){
@@ -149,11 +156,15 @@ class SinriLogKeeperWorker
 		    		break;
 		    	}
 		        $line=htmlspecialchars($buffer,ENT_QUOTES);
+
+		        $this_line_matches=false;
+
 		        if($filter_method=='text'){
 					//Simply read file, and search it
 		        	if($filter==='' || false!==strstr($buffer, $filter)){
 		        		//Matched
 		        		$list[$line_number]=$line;
+		        		$this_line_matches=true;
 		        	}
 				}
 				elseif($filter_method=='text_case_insensitive'){
@@ -161,6 +172,7 @@ class SinriLogKeeperWorker
 		        	if($filter==='' || false!==stristr($buffer, $filter)){
 		        		//Matched
 		        		$list[$line_number]=$line;
+		        		$this_line_matches=true;
 		        	}
 				}
 				elseif($filter_method=='regex'){
@@ -168,11 +180,45 @@ class SinriLogKeeperWorker
 					if(preg_match('/'.$filter.'/', $buffer)){
 						//Matched
 		        		$list[$line_number]=$line;
+		        		$this_line_matches=true;
 					}
 				}
 				else{
 					$list[$line_number]=$line;
+					$around_status=-1;
+					// echo __LINE__.PHP_EOL;
 				}
+
+				if($around_lines<=0 || $around_status<0){
+					//disabled
+					// die('miao:'.$filter_method.' ... '.$around_status);
+				}elseif($around_status===0){
+					//waiting for match
+					if($this_line_matches){
+						foreach ($cache_around_lines as $cached_line_index => $one_cached_line) {
+							// echo "list[$cached_line_index]=$one_cached_line;".PHP_EOL;
+							$list[$cached_line_index]=$one_cached_line;
+						}
+						$cache_around_lines=array();
+						$around_status=$around_lines;
+					}else{
+						if(count($cache_around_lines)==$around_lines){
+							$key_to_remove=null;
+							foreach ($cache_around_lines as $key => $value) {
+								$key_to_remove=$key;
+								break;
+							}
+							unset($cache_around_lines[$key_to_remove]);
+						}
+						$cache_around_lines[$line_number]='[AROUND LINES:'.$line_number.']'.$line;
+					}
+				}else{
+					//after match
+					// echo "list[$line_number]=$line;".PHP_EOL;
+					$list[$line_number]=$line;
+					$around_status=max(0,$around_status-1);
+				}
+
 				if(count($list)>SinriLogKeeperWorker::$max_result_line_count){
 					$list['NOTE']='The result contains lines beyond the limitation so that stopped search. Above might not be all results, use line range settings to find more.';
 					break;

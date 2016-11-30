@@ -113,8 +113,9 @@ class SinriLogKeeperConfig
 
 	public static function getInstance($config_path=null){
 		if(SinriLogKeeperConfig::$instance==null){
-			SinriLogKeeperConfig::$instance=new SinriLogKeeperConfig($config_path);
-			SinriLogKeeperConfig::$instance->load();
+			$slkc=new SinriLogKeeperConfig($config_path);
+			$slkc->load();
+			SinriLogKeeperConfig::$instance=$slkc;
 		}
 		return SinriLogKeeperConfig::$instance;
 	}

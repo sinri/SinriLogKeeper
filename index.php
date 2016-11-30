@@ -24,6 +24,7 @@ if($act=='load_files'){
 	$filter=getRequest('filter','');
 	$line_begin=getRequest('line_begin',0);
 	$line_end=getRequest('line_end',0);
+	$around_lines=getRequest('around_lines',0);
 	try {
 		$is_readable=SinriLogKeeperWorker::checkIsReadableFile($filename);
 		if(!$is_readable){
@@ -43,7 +44,6 @@ if($act=='load_files'){
 	}
 	$filename=getRequest('filename','');
 	responseFileDownload($filename);
-	exit();
 }
 
 ?>
