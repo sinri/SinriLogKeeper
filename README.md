@@ -2,7 +2,9 @@
 
 View Log From Machine
 
-Version 1.3
+Version 1.3 
+[![Code Climate](https://codeclimate.com/github/sinri/SinriLogKeeper/badges/gpa.svg)](https://codeclimate.com/github/sinri/SinriLogKeeper) 
+[![Issue Count](https://codeclimate.com/github/sinri/SinriLogKeeper/badges/issue_count.svg)](https://codeclimate.com/github/sinri/SinriLogKeeper)
 
 ----
 

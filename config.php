@@ -16,10 +16,9 @@ class SinriLogKeeperConfig
 
 	function __construct($config_path=null)
 	{
+		$this->config_path=$config_path;
 		if($config_path==null){
 			$this->config_path=__DIR__.'/slk.config';
-		}else{
-			$this->config_path=$config_path;
 		}
 
 		$this->useUserAuth=false;
