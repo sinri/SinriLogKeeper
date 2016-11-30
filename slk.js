@@ -4,16 +4,18 @@ function loadFiles(){
 		url:'index.php?act=load_files',
 		dataType:'json'
 	}).done(function(obj){
-		if(obj.code=='ok'){
+		if(obj.code==='ok'){
 			console.log(obj.data);
 			var html="";
 			for(var group in obj.data){
-				html+="<optgroup label='"+group+"'>";
-				for(var i=0;i<obj.data[group].length;i++){
-					var file=obj.data[group][i];
-					html+="<option value='"+file+"'>"+file+"</option>";
+				if ({}.hasOwnProperty.call(obj.data, group)) {
+					html+="<optgroup label='"+group+"'>";
+					for(var i=0;i<obj.data[group].length;i++){
+						var file=obj.data[group][i];
+						html+="<option value='"+file+"'>"+file+"</option>";
+					}
+					html+="</optgroup>";
 				}
-				html+="</optgroup>";
 			}
 			$("#file_select").html(html);
 			$("#news_pane").html('Files loaded.')
@@ -87,7 +89,7 @@ function searchWithFilterParmas(params,can_back){
 		data:params,
 		dataType:'json'
 	}).done(function(obj){
-		if(obj.code=='ok'){
+		if(obj.code==='ok'){
 			if(can_back){
 				var old_display_html=$("#display_pane").html();
 				var old_news_html=$("#news_pane").html();
@@ -98,22 +100,24 @@ function searchWithFilterParmas(params,can_back){
 			html+="<tbody>";
 			var count=0;
 			for(var line_no in obj.data.list){
-				count+=1;
-				var c_c=(count%2==0?'c0':'c1');
-				html+="<tr>";
-				html+="<td class='cc'>";
-				// html+="<pre><code>";
-				if(!can_back){
-					html+="<a href='javascript:void(0);' onclick='searchOneLineAround("+line_no+")'>";
+				if ({}.hasOwnProperty.call(obj.data.list, line_no)) {
+					count+=1;
+					var c_c=(count%2==0?'c0':'c1');
+					html+="<tr>";
+					html+="<td class='cc'>";
+					// html+="<pre><code>";
+					if(!can_back){
+						html+="<a href='javascript:void(0);' onclick='searchOneLineAround("+line_no+")'>";
+					}
+					html+=line_no;
+					if(!can_back){
+						html+="</a>";
+					}
+					// html+="</pre></code>";
+					html+="</td>";
+					html+="<td class='"+c_c+"'><pre><code>"+obj.data.list[line_no]+"</code></pre></td>";
+					html+="</tr>";
 				}
-				html+=line_no;
-				if(!can_back){
-					html+="</a>";
-				}
-				// html+="</pre></code>";
-				html+="</td>";
-				html+="<td class='"+c_c+"'><pre><code>"+obj.data.list[line_no]+"</code></pre></td>";
-				html+="</tr>";
 			}
 			html+="</tbody>";
 			html+='</table>';

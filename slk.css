@@ -11,7 +11,7 @@
 	background-color: lightblue;
 	color: white;
 }
-#src_table td.cc {
+#src_table .cc {
 	background: #E7E5DC;
 }
 #src_table td.c0 {
@@ -21,7 +21,7 @@
 	background: #FFFFFF;
 }
 #src_table td pre{
-	margin: 0px;
+	margin: 0;
 	font-family: 'Lucida Console',monospace;
 }
 p.c0 {
@@ -47,7 +47,7 @@ blockquote {
 	border-bottom: 1px solid gray;
 	font-family: 'Verdana', sans-serif;
 }
-#controller_pane div.condition_row{
+#controller_pane .condition_row{
 	margin: 10px 0;
 }
 #news_pane {

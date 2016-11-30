@@ -113,13 +113,31 @@ class SinriLogKeeperWorker
 
 		$list=array();
 		// $list['command']=$command;
+		$prev_line_number=0;
 		foreach ($output as $value) {
-			$ff=strpos($value, "\t");
-			if($ff!==false){
-				$line_number=trim(substr($value, 0,$ff));
-				$line_content=substr($value, $ff+1);
+			// $ff=strpos($value, "\t");
+			// if($ff!==false){
+			// 	$line_number=trim(substr($value, 0,$ff));
+			// 	$line_content=substr($value, $ff+1);
+			// 	$list[$line_number]=$line_content;
+			// }else{
+			// 	return $output;
+			// }
+
+			$found=preg_match('/^\s*(\d+)\t?(.*)$/', $value,$match);
+			// print_r($match);die();
+			if($found){
+				$line_number=$match[1];
+				$line_content=$match[2];
 				$list[$line_number]=$line_content;
-			}else{
+				$prev_line_number=$line_number;
+			}
+			elseif($value=='--'){
+				$prev_line_number+=1;
+				$list[$prev_line_number]='<hr>';
+			}
+			else{
+				// echo $value.'...'.PHP_EOL;print_r($match);die();
 				return $output;
 			}
 		}
