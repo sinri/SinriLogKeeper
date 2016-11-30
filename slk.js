@@ -57,7 +57,7 @@ function searchWithFilter(){
 
 function searchOneLineAround(center_line,around){
 	if(!around){
-		around=parseInt($("#around_lines").val());
+		around=parseInt($("#around_lines").val()，10);
 	}
 	var username=$("#username").val();
 	var password=$("#password").val();
@@ -102,7 +102,7 @@ function searchWithFilterParmas(params,can_back){
 			for(var line_no in obj.data.list){
 				if ({}.hasOwnProperty.call(obj.data.list, line_no)) {
 					count+=1;
-					var c_c=(count%2==0?'c0':'c1');
+					var c_c=(count%2===0?'c0':'c1');
 					html+="<tr>";
 					html+="<td class='cc'>";
 					// html+="<pre><code>";

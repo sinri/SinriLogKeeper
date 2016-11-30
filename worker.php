@@ -221,12 +221,14 @@ class SinriLogKeeperWorker
 						$around_status=$around_lines;
 					}else{
 						if(count($cache_around_lines)==$around_lines){
-							$key_to_remove=null;
-							foreach ($cache_around_lines as $key => $value) {
-								$key_to_remove=$key;
-								break;
-							}
-							unset($cache_around_lines[$key_to_remove]);
+							// $key_to_remove=null;
+							// foreach ($cache_around_lines as $key => $value) {
+							// 	$key_to_remove=$key;
+							// 	break;
+							// }
+							// array_keys(input)
+							// unset($cache_around_lines[$key_to_remove]);
+							array_splice($cache_around_lines,0,1);
 						}
 						$cache_around_lines[$line_number]='[AROUND LINES:'.$line_number.']'.$line;
 					}
