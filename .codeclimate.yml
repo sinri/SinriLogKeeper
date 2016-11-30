@@ -16,6 +16,10 @@ engines:
     enabled: true
   phpmd:
     enabled: true
+    # ... CONFIG CONTENT ...
+    checks:
+      Controversial/CamelCaseParameterName:
+        enabled: false
 ratings:
   paths:
   - "**.css"
