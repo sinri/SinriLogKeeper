@@ -33,6 +33,7 @@ class SinriLogKeeperConfig
 		$this->display=array(
 			'title'=>'SampleProject',
 			'header'=>'SampleProject',
+			'special'=>'',
 		);
 		if(file_exists($this->config_path)){
 			$text=file_get_contents($this->config_path);
@@ -58,6 +59,8 @@ class SinriLogKeeperConfig
 					}
 					elseif($items[0]=='!OptionHeader'){
 						$this->display['header']=$items[1];
+					}elseif($items[0]=='!OptionSpecial'){
+						$this->display['special']=$items[1];
 					}
 					// print_r($items);
 				}
