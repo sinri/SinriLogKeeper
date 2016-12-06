@@ -122,8 +122,10 @@ if($act=='load_files'){
 	</blockquote>
 	<div id="controller_pane">
 		<div class="condition_row" id="user_auth_row">
-			Username <input type="text" id="username">
-			Password <input type="password" id="password">
+			<div class='row_label'>Username</div> 
+			<input type="text" id="username">
+			<div class='row_label'>Password</div> 
+			<input type="password" id="password">
 		</div>
 		<div class="condition_row">
 			<div class='row_label'>File</div>

@@ -94,5 +94,6 @@ button.extension {
 }
 div.row_label {
 	width: 150px;
+	text-align: center;
 	display: inline-block;
 }
