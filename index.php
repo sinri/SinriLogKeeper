@@ -111,7 +111,7 @@ if($act=='load_files'){
 </head>
 <body>
 	<h1>SinriLogKeeper for <?php echo $display_data['header']; ?></h1>
-	<blockquote>
+	<blockquote style='display:none'>
 		For God shall bring every work into judgment, 
 		with every secret thing, 
 		whether it be good, 
@@ -174,7 +174,7 @@ if($act=='load_files'){
 	</div>
 	<div id="loading_div"></div>
 	<div id="footer_div">
-		<a href="http://github.everstray.com/SinriLogKeeper/">Version 1.3</a> 
+		<a href="http://github.everstray.com/SinriLogKeeper/">Version 1.3 For Leqee</a> 
 		<?php if(!SinriLogKeeperWorker::checkUseUserAuth()){ 
 			// echo ""
 		}else{
@@ -185,7 +185,7 @@ if($act=='load_files'){
 		| 
 		<a href="https://raw.githubusercontent.com/sinri/SinriLogKeeper/master/LICENSE">License GPLv2</a> 
 	</div>
-	<div style="text-align:center">
+	<div style="text-align:center;display:none">
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<!-- slk_wms_product -->
 			<ins class="adsbygoogle"
