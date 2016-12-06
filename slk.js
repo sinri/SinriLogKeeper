@@ -57,7 +57,7 @@ function searchWithFilter(){
 
 function searchOneLineAround(center_line,around){
 	if(!around){
-		around=parseInt($("#around_lines").val()，10);
+		around=parseInt($("#around_lines").val(),10);
 	}
 	var username=$("#username").val();
 	var password=$("#password").val();
