@@ -113,7 +113,7 @@ if($act=='load_files'){
 	<h1>
 		SinriLogKeeper for <?php echo $display_data['header']; ?>
 	</h1>
-	<blockquote style='display:none'>
+	<blockquote>
 		For God shall bring every work into judgment, 
 		with every secret thing, 
 		whether it be good, 
@@ -189,7 +189,6 @@ if($act=='load_files'){
 		<a href="https://raw.githubusercontent.com/sinri/SinriLogKeeper/master/LICENSE">License GPLv2</a> 
 	</div>
 	<!-- slk_wms_product -->
-	<!--
 	<div style="text-align:center">
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<ins class="adsbygoogle"
@@ -200,6 +199,5 @@ if($act=='load_files'){
 			(adsbygoogle = window.adsbygoogle || []).push({});
 		</script>
 	</div>
-	-->
 </body>
 </html>
