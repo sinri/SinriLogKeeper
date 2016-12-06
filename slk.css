@@ -45,7 +45,7 @@ blockquote {
 	margin: 10px;
 	border-top: 1px solid gray;
 	border-bottom: 1px solid gray;
-	font-family: 'Verdana', sans-serif;
+	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, "Microsoft YaHei";
 }
 #controller_pane .condition_row{
 	margin: 10px 0;
@@ -64,4 +64,35 @@ blockquote {
 	padding: 10px;
 	border-top: 1px solid gray;
 	text-align: center;
+}
+
+
+
+#file_select {
+	width: 350px;
+}
+#filter_text {
+	width: 350px;
+}
+button {
+	min-width: 55px;
+	color: #333;
+	border: 1px solid #ddd;
+	background-color: #f7f7f7;
+}
+button.primary {
+	color: #fff;
+	border: 1px solid #09c;
+	background-color: #09c;
+}
+button.extension {
+	background-color: #DCE2E7;
+	color: #444;
+}
+#filter_method_readme {
+	color: #333;
+}
+div.row_label {
+	width: 150px;
+	display: inline-block;
 }

@@ -129,7 +129,7 @@ function searchWithFilterParmas(params,can_back){
 			news_html+='Found '+count+' lines from '+params.filename+' with '+((time_end-time_start)/1000)+"s for ajax. ";
 			news_html+="</span>";
 			if(obj.data.command){
-				news_html+="<span>Command: <code>"+obj.data.command+"</code></span>";
+				news_html+="<br><span>Command: <code>"+obj.data.command+"</code></span>";
 			}
 			if(can_back){
 				news_html+=" <button id='back_to_prev_table_btn'>BACK TO PREVIOUS RESULT</button>";

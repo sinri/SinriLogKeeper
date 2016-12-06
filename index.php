@@ -110,7 +110,9 @@ if($act=='load_files'){
 	</script>
 </head>
 <body>
-	<h1>SinriLogKeeper for <?php echo $display_data['header']; ?></h1>
+	<h1>
+		SinriLogKeeper for <?php echo $display_data['header']; ?>
+	</h1>
 	<blockquote style='display:none'>
 		For God shall bring every work into judgment, 
 		with every secret thing, 
@@ -124,46 +126,47 @@ if($act=='load_files'){
 			Password <input type="password" id="password">
 		</div>
 		<div class="condition_row">
-			File
+			<div class='row_label'>File</div>
 			<select id="file_select">
 				<option value='null'>Not Loaded Yet</option>
 			</select>
-			|| Experimental Function: <button onclick='download_this_file()'>download file</button>
+			&nbsp;
+			<button class="extension" onclick='download_this_file()'>↓</button>
 		</div>
 		<div class="condition_row">
-			Line Range From 
+			<div class='row_label'>Line Range</div>
 			<input type='text' id="line_begin">
 			To 
 			<input type='text' id="line_end">
-			||
-			Around Lines 
-			<input type="text" id="around_lines" value="10">
+			&nbsp;
+			<button onclick="rangeTool_firstLines(1000)">Head</button>
+			<button onclick="rangeTool_lastLines(1000)">Tail</button>
+			<button onclick="rangeTool_prevLines(1000)">Previous</button>
+			<button onclick="rangeTool_nextLines(1000)">Next</button>
+			For 1000 Lines
 		</div>
 		<div class="condition_row">
+			<div class='row_label'>Around Lines</div>
+			<input type="text" id="around_lines" value="10">
+			<!--
 			Quick Ranger Setter
 			<a href="javascript:void(0);" onclick="rangeTool_firstLines(1000)">First 1000 Lines</a>
 			<a href="javascript:void(0);" onclick="rangeTool_lastLines(1000)">Last 1000 Lines</a>
 			<a href="javascript:void(0);" onclick="rangeTool_prevLines(1000)">Previous 1000 Lines</a>
 			<a href="javascript:void(0);" onclick="rangeTool_nextLines(1000)">Next 1000 Lines</a>
+			-->
 		</div>
 		<div class="condition_row">
-			Filter Method 
+			<div class='row_label'>Filter Method</div>
 			<select id="filter_method_select">
-				<!-- 
-				<option value="pure_grep">Grep</option>
-				<option value="pure_grep_case_insensitive">Grep Case Insensitive</option>
-				<option value="egrep">EGrep</option>
-				<option value="text">Match Text Case Sensitive</option>
-				<option value="text_case_insensitive">Match Text Case Insensitive</option>
-				<option value="regex">PHP-Style Regular Expression</option> 
-				-->
 			</select>
 			<span id="filter_method_readme"></span>
 		</div>
 		<div class="condition_row">
-			Filter 
-			<input type="text" id="filter_text" style="width: 300px;">
-			<button onclick="searchWithFilter()">Search</button>
+			<div class='row_label'>Filter </div>
+			<input type="text" id="filter_text">
+			&nbsp;
+			<button class="primary" onclick="searchWithFilter()">SEARCH</button>
 		</div>
 		<div class="condition_row">
 			With Limitation of Result Line Count of <?php echo SinriLogKeeperWorker::getMaxResultLineCount();?>.
