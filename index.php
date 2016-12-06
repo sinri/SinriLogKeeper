@@ -185,9 +185,10 @@ if($act=='load_files'){
 		| 
 		<a href="https://raw.githubusercontent.com/sinri/SinriLogKeeper/master/LICENSE">License GPLv2</a> 
 	</div>
-	<div style="text-align:center;display:none">
+	<!-- slk_wms_product -->
+	<!--
+	<div style="text-align:center">
 		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<!-- slk_wms_product -->
 			<ins class="adsbygoogle"
 			     style="display:inline-block;width:728px;height:90px"
 			     data-ad-client="ca-pub-5323203756742073"
@@ -196,5 +197,6 @@ if($act=='load_files'){
 			(adsbygoogle = window.adsbygoogle || []).push({});
 		</script>
 	</div>
+	-->
 </body>
 </html>
