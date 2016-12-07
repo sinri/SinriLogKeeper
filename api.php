@@ -2,10 +2,12 @@
 require_once('worker.php');
 require_once('slk_tool.php');
 
+$SLK_Worker=new SinriLogKeeperWorker();
+
 $act=getRequest('act');
 if($act==='load_files'){
 	try {
-		$groups=SinriLogKeeperWorker::getLogFileGroups();
+		$groups=$SLK_Worker->getLogFileGroups();
 		responseInJson('ok',$groups);	
 	} catch (Exception $e) {
 		responseInJson('fail',$e->getMessage());	
@@ -14,7 +16,7 @@ if($act==='load_files'){
 	try {
 		$username=getRequest('username');
 		$password=getRequest('password');
-		$auth=SinriLogKeeperWorker::checkUserAuth($username,$password);
+		$auth=$SLK_Worker->checkUserAuth($username,$password);
 		if(!$auth){
 			throw new Exception("Log Locked.", 1);			
 		}
@@ -25,11 +27,11 @@ if($act==='load_files'){
 		$line_end=getRequest('line_end',0);
 		$around_lines=getRequest('around_lines',0);
 	
-		$is_readable=SinriLogKeeperWorker::checkIsReadableFile($filename);
+		$is_readable=$SLK_Worker->checkIsReadableFile($filename);
 		if(!$is_readable){
 			throw new Exception("想搞注入攻击吗，干得好。", 1);
 		}
-		$list=SinriLogKeeperWorker::filterTargetFile($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines,$command);
+		$list=$SLK_Worker->filterTargetFile($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines,$command);
 		responseInJson('ok',array('list'=>$list,'command'=>$command));
 	} catch (Exception $e) {
 		responseInJson('fail',$e->getMessage());
@@ -38,7 +40,7 @@ if($act==='load_files'){
 	try {
 		$username=getRequest('username');
 		$password=getRequest('password');
-		$auth=SinriLogKeeperWorker::checkUserAuth($username,$password);
+		$auth=$SLK_Worker->checkUserAuth($username,$password);
 		if(!$auth){
 			throw new Exception("Log Locked.", 1);			
 		}

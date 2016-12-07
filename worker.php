@@ -5,18 +5,18 @@ require_once('config.php');
 */
 class SinriLogKeeperWorker
 {
-	private static $max_result_line_count=2000;
+	private $max_result_line_count=2000;
 
 	function __construct()
 	{
 		# code...
 	}
 
-	public static function getMaxResultLineCount(){
-		return SinriLogKeeperWorker::$max_result_line_count;
+	public function getMaxResultLineCount(){
+		return $this->max_result_line_count;
 	}
 
-	public static function getLogFileGroups(){
+	public function getLogFileGroups(){
 		$paths=SinriLogKeeperConfig::getInstance()->getPaths();
 		$all_files=array();
 		foreach ($paths as $path_item) {
@@ -26,7 +26,7 @@ class SinriLogKeeperWorker
 		return $all_files;
 	}
 
-	public static function checkIsReadableFile($filename){
+	public function checkIsReadableFile($filename){
 		$paths=SinriLogKeeperConfig::getInstance()->getPaths();
 		//Method One
 		/*		
@@ -46,16 +46,16 @@ class SinriLogKeeperWorker
 		return false;
 	}
 
-	public static function checkUseUserAuth(){
+	public function checkUseUserAuth(){
 		return SinriLogKeeperConfig::getInstance()->isUseUserAuth();
 	}
 
-	public static function checkUserAuth($username,$password){
+	public function checkUserAuth($username,$password){
 		$r = SinriLogKeeperConfig::getInstance()->userAuth($username,$password);
 		return $r;
 	}
 
-	public static function displayData(){
+	public function displayData(){
 		$displayData=SinriLogKeeperConfig::getInstance()->getDisplayData();
 		if(!$displayData){
 			$displayData=array(
@@ -66,17 +66,17 @@ class SinriLogKeeperWorker
 		return $displayData;
 	}
 
-	public static function filterTargetFile($filename,$filter_method='text',$filter='',$line_begin=0,$line_end=0,$around_lines=3,&$command=''){
+	public function filterTargetFile($filename,$filter_method='text',$filter='',$line_begin=0,$line_end=0,$around_lines=3,&$command=''){
 		switch ($filter_method) {
 			case 'pure_grep':
 			case 'pure_grep_case_insensitive':
 			case 'egrep':
-				return SinriLogKeeperWorker::filterTargetFileUsingGrep($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines,$command);
+				return $this->filterTargetFileUsingGrep($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines,$command);
 				break;
 			case 'text':
 			case 'text_case_insensitive':
 			case 'regex':
-				return SinriLogKeeperWorker::filterTargetFileUsingPHP($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines);
+				return $this->filterTargetFileUsingPHP($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines);
 				break;
 			default:
 				throw new Exception("总有刁民想害朕。", 1);
@@ -84,15 +84,15 @@ class SinriLogKeeperWorker
 		}
 	}
 
-	private static function filterTargetFileUsingGrep($filename,$filter_method='pure_grep',$filter='',$line_begin=0,$line_end=0,$around_lines=3,&$command=''){
+	private function filterTargetFileUsingGrep($filename,$filter_method='pure_grep',$filter='',$line_begin=0,$line_end=0,$around_lines=3,&$command=''){
 		setlocale(LC_CTYPE, "en_US.UTF-8");
 		$around_lines=intval($around_lines);
 		if($filter_method=='pure_grep'){
-			$options="-C ".$around_lines." -m ".intval(SinriLogKeeperWorker::$max_result_line_count);
+			$options="-C ".$around_lines." -m ".intval($this->max_result_line_count);
 		}elseif($filter_method=='pure_grep_case_insensitive'){
-			$options="-C ".$around_lines." -i -m ".intval(SinriLogKeeperWorker::$max_result_line_count);
+			$options="-C ".$around_lines." -i -m ".intval($this->max_result_line_count);
 		}elseif ($filter_method=='egrep') {
-			$options="-C ".$around_lines." -E -m ".intval(SinriLogKeeperWorker::$max_result_line_count);
+			$options="-C ".$around_lines." -E -m ".intval($this->max_result_line_count);
 		}
 		$line_begin=intval($line_begin);
 		$line_end=intval($line_end);
@@ -144,13 +144,16 @@ class SinriLogKeeperWorker
 
 		return $list;
 	}
-	private static function filterTargetFileUsingPHP($filename,$filter_method='text',$filter='',$line_begin=0,$line_end=0,$around_lines=3){
+
+	/////
+
+	private function filterTargetFileUsingPHP($filename,$filter_method='text',$filter='',$line_begin=0,$line_end=0,$around_lines=3){
 		$handle = fopen($filename, "r");
 		$list=array();
 		if ($handle) {
 			$line_number=0;
 			if($line_begin<0 || $line_end<0){
-				$total_lines=SinriLogKeeperWorker::getLineCountOfFile($filename);
+				$total_lines=$this->getLineCountOfFile($filename);
 				if($line_begin<0){
 					$line_begin=$total_lines+$line_begin;
 				}
@@ -239,7 +242,7 @@ class SinriLogKeeperWorker
 					$around_status=max(0,$around_status-1);
 				}
 
-				if(count($list)>SinriLogKeeperWorker::$max_result_line_count){
+				if(count($list)>$this->max_result_line_count){
 					$list['NOTE']='The result contains lines beyond the limitation so that stopped search. Above might not be all results, use line range settings to find more.';
 					break;
 				}

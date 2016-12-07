@@ -2,7 +2,8 @@
 require_once('worker.php');
 require_once('slk_tool.php');
 
-$display_data=SinriLogKeeperWorker::displayData();
+$SLK_Worker=new SinriLogKeeperWorker();
+$display_data=$SLK_Worker->displayData();
 ?>
 <!DOCTYPE html>
 <html>
@@ -45,7 +46,7 @@ $display_data=SinriLogKeeperWorker::displayData();
 		$(document).ready(function(){
 			se_loading_instance=se_loading('loading_div');
 			loadFiles();
-			<?php if(!SinriLogKeeperWorker::checkUseUserAuth()){ ?>
+			<?php if(!$SLK_Worker->checkUseUserAuth()){ ?>
 			$("#user_auth_row").css('display','none');
 			<?php }?>
 			writeFilterMethodSelect();
@@ -134,7 +135,7 @@ $display_data=SinriLogKeeperWorker::displayData();
 			<button class="primary" onclick="searchWithFilter()">SEARCH</button>
 		</div>
 		<div class="condition_row">
-			With Limitation of Result Line Count of <?php echo SinriLogKeeperWorker::getMaxResultLineCount();?>.
+			With Limitation of Result Line Count of <?php echo $SLK_Worker->getMaxResultLineCount();?>.
 		</div>
 	</div>
 	<div id="alert_pane">
@@ -147,7 +148,7 @@ $display_data=SinriLogKeeperWorker::displayData();
 	<div id="loading_div"></div>
 	<div id="footer_div">
 		<a href="http://github.everstray.com/SinriLogKeeper/">Version 1.3 For Leqee</a> 
-		<?php if(!SinriLogKeeperWorker::checkUseUserAuth()){ 
+		<?php if(!$SLK_Worker->checkUseUserAuth()){ 
 			// echo ""
 		}else{
 			echo " | UserAuth Protecting ";
