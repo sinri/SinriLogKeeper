@@ -147,7 +147,7 @@ function searchWithFilterParmas(params,can_back){
 		}
 	}).fail(function(err){
 		console.log(err);
-		alert('Ajax Error. See console for more information.');
+		arise_alert('Ajax Error. See console for more information.');
 	}).always(function(){
 		se_loading_instance.hide();
 	})
