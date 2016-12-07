@@ -132,7 +132,7 @@ $display_data=$SLK_Worker->displayData();
 			<div class='row_label'>Filter </div>
 			<input type="text" id="filter_text">
 			&nbsp;
-			<button class="primary" onclick="searchWithFilter()">SEARCH</button>
+			<button class="primary" onclick="close_alert();searchWithFilter()">SEARCH</button>
 		</div>
 		<div class="condition_row">
 			With Limitation of Result Line Count of <?php echo $SLK_Worker->getMaxResultLineCount();?>.

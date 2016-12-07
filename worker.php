@@ -150,114 +150,97 @@ class SinriLogKeeperWorker
 	private function filterTargetFileUsingPHP($filename,$filter_method='text',$filter='',$line_begin=0,$line_end=0,$around_lines=3){
 		$handle = fopen($filename, "r");
 		$list=array();
-		if ($handle) {
-			$line_number=0;
-			if($line_begin<0 || $line_end<0){
-				$total_lines=$this->getLineCountOfFile($filename);
-				if($line_begin<0){
-					$line_begin=$total_lines+$line_begin;
-				}
-				if($line_end<0){
-					$line_end=$total_lines+$line_end;
-				}
-			}
-
-			// -1 for disabled
-			// 0 for waiting for match, cache lastest lines
-			// plus for after match, cache lastest lines
-			$around_status=0;
-			$cache_around_lines=array();
-		    
-		    while (($buffer = fgets($handle)) !== false) {
-		    	$line_number+=1;
-		    	if($line_begin>0 && $line_begin>$line_number){
-		    		continue;
-		    	}
-		    	if($line_end>0 && $line_end<$line_number){
-		    		break;
-		    	}
-		        $line=htmlspecialchars($buffer,ENT_QUOTES);
-
-		        $this_line_matches=false;
-
-		        if($filter_method=='text'){
-					//Simply read file, and search it
-		        	if($filter==='' || false!==strstr($buffer, $filter)){
-		        		//Matched
-		        		$list[$line_number]=$line;
-		        		$this_line_matches=true;
-		        	}
-				}
-				elseif($filter_method=='text_case_insensitive'){
-					//Simply read file, and search it but case-insensitively
-		        	if($filter==='' || false!==stristr($buffer, $filter)){
-		        		//Matched
-		        		$list[$line_number]=$line;
-		        		$this_line_matches=true;
-		        	}
-				}
-				elseif($filter_method=='regex'){
-					//Use regex
-					if(preg_match('/'.$filter.'/', $buffer)){
-						//Matched
-		        		$list[$line_number]=$line;
-		        		$this_line_matches=true;
-					}
-				}
-				else{
-					$list[$line_number]=$line;
-					$around_status=-1;
-					// echo __LINE__.PHP_EOL;
-				}
-
-				if($around_lines<=0 || $around_status<0){
-					//disabled
-					// die('miao:'.$filter_method.' ... '.$around_status);
-				}elseif($around_status===0){
-					//waiting for match
-					if($this_line_matches){
-						foreach ($cache_around_lines as $cached_line_index => $one_cached_line) {
-							// echo "list[$cached_line_index]=$one_cached_line;".PHP_EOL;
-							$list[$cached_line_index]=$one_cached_line;
-						}
-						$cache_around_lines=array();
-						$around_status=$around_lines;
-					}else{
-						if(count($cache_around_lines)==$around_lines){
-							// $key_to_remove=null;
-							// foreach ($cache_around_lines as $key => $value) {
-							// 	$key_to_remove=$key;
-							// 	break;
-							// }
-							// array_keys(input)
-							// unset($cache_around_lines[$key_to_remove]);
-							array_splice($cache_around_lines,0,1);
-						}
-						$cache_around_lines[$line_number]='[AROUND LINES:'.$line_number.']'.$line;
-					}
-				}else{
-					//after match
-					// echo "list[$line_number]=$line;".PHP_EOL;
-					$list[$line_number]=$line;
-					$around_status=max(0,$around_status-1);
-				}
-
-				if(count($list)>$this->max_result_line_count){
-					$list['NOTE']='The result contains lines beyond the limitation so that stopped search. Above might not be all results, use line range settings to find more.';
-					break;
-				}
-		    }
-		    // if (!feof($handle)) {
-		    //     echo "Error: unexpected fgets() fail\n";
-		    // }
-		    fclose($handle);
-		    return $list;
-		}else{
+		if (!$handle) {
 			throw new Exception("Error Reading File", 1);		
 		}
+		$line_number=0;
+		if($line_begin<0 || $line_end<0){
+			$total_lines=$this->getLineCountOfFile($filename);
+			if($line_begin<0){
+				$line_begin=$total_lines+$line_begin;
+			}
+			if($line_end<0){
+				$line_end=$total_lines+$line_end;
+			}
+		}
+
+		// -1 for disabled
+		// 0 for waiting for match, cache lastest lines
+		// plus for after match, cache lastest lines
+		$around_status=0;
+		$cache_around_lines=array();
+	    
+	    while (($buffer = fgets($handle)) !== false) {
+	    	$line_number+=1;
+	    	if($line_begin>0 && $line_begin>$line_number){
+	    		continue;
+	    	}
+	    	if($line_end>0 && $line_end<$line_number){
+	    		break;
+	    	}
+	        $line=htmlspecialchars($buffer,ENT_QUOTES);
+
+	        $this_line_matches=false;
+
+	        if($filter_method=='text'){ //Simply read file, and search it
+	        	if($filter==='' || false!==strstr($buffer, $filter)){ //Matched
+	        		$list[$line_number]=$line;
+	        		$this_line_matches=true;
+	        	}
+			}
+			elseif($filter_method=='text_case_insensitive'){ //Simply read file, and search it but case-insensitively
+	        	if($filter==='' || false!==stristr($buffer, $filter)){ //Matched
+	        		$list[$line_number]=$line;
+	        		$this_line_matches=true;
+	        	}
+			}
+			elseif($filter_method=='regex'){ //Use regex
+				if(preg_match('/'.$filter.'/', $buffer)){ //Matched
+	        		$list[$line_number]=$line;
+	        		$this_line_matches=true;
+				}
+			}
+			else{
+				$list[$line_number]=$line;
+				$around_status=-1;
+			}
+
+			if($around_lines<=0 || $around_status<0){
+				//disabled
+			}elseif($around_status===0){
+				//waiting for match
+				if($this_line_matches){
+					foreach ($cache_around_lines as $cached_line_index => $one_cached_line) {
+						// echo "list[$cached_line_index]=$one_cached_line;".PHP_EOL;
+						$list[$cached_line_index]=$one_cached_line;
+					}
+					$cache_around_lines=array();
+					$around_status=$around_lines;
+				}else{
+					if(count($cache_around_lines)==$around_lines){
+						$cache_around_lines=array_slice($cache_around_lines,1,count($cache_around_lines)-2,true);
+					}
+					$cache_around_lines[$line_number]='[AROUND:'.$line_number.']'.$line;
+				}
+			}else{
+				//after match
+				$list[$line_number]='[AROUND:'.$line_number.']'.$line;
+				$around_status=max(0,$around_status-1);
+			}
+
+			if(count($list)>$this->max_result_line_count){
+				$list['NOTE']='The result contains lines beyond the limitation so that stopped search. Above might not be all results, use line range settings to find more.';
+				break;
+			}
+	    }
+	    // if (!feof($handle)) {
+	    //     echo "Error: unexpected fgets() fail\n";
+	    // }
+	    fclose($handle);
+	    return $list;
 	}
 
-	public static function getLineCountOfFile($filename){
+	public function getLineCountOfFile($filename){
 		$file = new SplFileObject($filename, 'r');
 		$file->seek(PHP_INT_MAX);
 		return ($file->key() + 0); 
