@@ -8,7 +8,7 @@ function getRequest($name,$default=null){
 }
 function responseInJson($code,$data){
 	echo json_encode(array('code'=>$code,'data'=>$data));
-	exit();
+	// exit();
 }
 
 function responseFileDownload($file){
@@ -17,7 +17,7 @@ function responseFileDownload($file){
 	if(!$done){
 		echo $error;
 	}
-	exit();
+	// exit();
 }
  
 /**

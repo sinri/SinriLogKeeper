@@ -1,7 +1,7 @@
 function loadFiles(){
 	// $("#file_select").html("<option value='1'>I</option><option value='2'>II</option>")
 	$.ajax({
-		url:'index.php?act=load_files',
+		url:'api.php?act=load_files',
 		dataType:'json'
 	}).done(function(obj){
 		if(obj.code==='ok'){
@@ -84,7 +84,7 @@ function searchWithFilterParmas(params,can_back){
 	var time_start=new Date().getTime();
 	se_loading_instance.show();
 	$.ajax({
-		url:'index.php?act=search_file',
+		url:'api.php?act=search_file',
 		method:'POST',
 		data:params,
 		dataType:'json'
@@ -173,22 +173,7 @@ function download_this_file(){
 	var password=$("#password").val();
 	var filename=$("#file_select").val();
 
-	var url='index.php?act=download&username='+encodeURIComponent(username)+'&password='+encodeURIComponent(password)+'&filename='+encodeURIComponent(filename);
+	var url='api.php?act=download&username='+encodeURIComponent(username)+'&password='+encodeURIComponent(password)+'&filename='+encodeURIComponent(filename);
 	// window.open(url);
 	window.location.href=url;
-	/*
-	$.ajax({
-		url:'index.php?act=download',
-		method:'post',
-		data:{
-			username:username,
-			password:password,
-			filename:filename
-		}
-	}).done(function(obj){
-		console.log('ok');
-	}).fail(function(){
-		console.log('fail');
-	})
-	*/
 }

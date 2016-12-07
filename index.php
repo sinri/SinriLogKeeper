@@ -3,49 +3,6 @@ require_once('worker.php');
 require_once('slk_tool.php');
 
 $display_data=SinriLogKeeperWorker::displayData();
-
-$act=getRequest('act');
-if($act=='load_files'){
-	try {
-		$groups=SinriLogKeeperWorker::getLogFileGroups();
-		responseInJson('ok',$groups);	
-	} catch (Exception $e) {
-		responseInJson('fail',$e->getMessage());	
-	}
-}elseif($act=='search_file'){
-	$username=getRequest('username');
-	$password=getRequest('password');
-	$auth=SinriLogKeeperWorker::checkUserAuth($username,$password);
-	if(!$auth){
-		responseInJson('fail','Log Locked.');
-	}
-	$filename=getRequest('filename','');
-	$filter_method=getRequest('filter_method','text');
-	$filter=getRequest('filter','');
-	$line_begin=getRequest('line_begin',0);
-	$line_end=getRequest('line_end',0);
-	$around_lines=getRequest('around_lines',0);
-	try {
-		$is_readable=SinriLogKeeperWorker::checkIsReadableFile($filename);
-		if(!$is_readable){
-			responseInJson('fail','想搞注入攻击吗，干得好。');
-		}
-		$list=SinriLogKeeperWorker::filterTargetFile($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines,$command);
-		responseInJson('ok',array('list'=>$list,'command'=>$command));
-	} catch (Exception $e) {
-		responseInJson('fail',$e->getMessage());
-	}
-}elseif($act=='download'){
-	$username=getRequest('username');
-	$password=getRequest('password');
-	$auth=SinriLogKeeperWorker::checkUserAuth($username,$password);
-	if(!$auth){
-		responseInJson('fail','Log Locked.');
-	}
-	$filename=getRequest('filename','');
-	responseFileDownload($filename);
-}
-
 ?>
 <!DOCTYPE html>
 <html>
