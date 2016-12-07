@@ -137,6 +137,10 @@ $display_data=SinriLogKeeperWorker::displayData();
 			With Limitation of Result Line Count of <?php echo SinriLogKeeperWorker::getMaxResultLineCount();?>.
 		</div>
 	</div>
+	<div id="alert_pane">
+		<p></p>
+		<div style="text-align:right;margin-right: 10px"><button onclick="close_alert()">Close This Alert</button></div>
+	</div>
 	<div id="news_pane"></div>
 	<div id="display_pane">
 	</div>

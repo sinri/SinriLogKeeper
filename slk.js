@@ -20,11 +20,11 @@ function loadFiles(){
 			$("#file_select").html(html);
 			$("#news_pane").html('Files loaded.')
 		}else{
-			alert('Request Error. '+obj.data);
+			arise_alert('Request Error. '+obj.data);
 		}
 	}).fail(function(err){
 		console.log(err);
-		alert('Ajax Error. See console for more information.');
+		arise_alert('Ajax Error. See console for more information.');
 	}).always(function(){
 		se_loading_instance.hide();
 	})
@@ -143,7 +143,7 @@ function searchWithFilterParmas(params,can_back){
 				})
 			}
 		}else{
-			alert('Request Error. '+obj.data);
+			arise_alert('Request Error. '+obj.data);
 		}
 	}).fail(function(err){
 		console.log(err);
@@ -164,6 +164,15 @@ function rangeTool_prevLines(n){
 }
 function rangeTool_nextLines(n){
 	$('#line_begin').val($('#line_end').val());$('#line_end').val($('#line_end').val()*1+n);
+}
+
+
+function arise_alert(alert_text){
+	$("#alert_pane").css("display","block");
+	$("#alert_pane p").html(alert_text);
+}
+function close_alert(){
+	$('#alert_pane').css('display','none');
 }
 
 // Exp.

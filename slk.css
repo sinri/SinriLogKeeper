@@ -66,7 +66,13 @@ blockquote {
 	text-align: center;
 }
 
-
+#alert_pane {
+	/*border: 2px solid red;*/
+	background: rgba(249, 50, 50, 0.39);
+	border-radius: 10px;
+	display: none;
+	padding: 10px 20px;
+}
 
 #file_select {
 	width: 350px;
@@ -74,25 +80,25 @@ blockquote {
 #filter_text {
 	width: 350px;
 }
+#filter_method_readme {
+	color: #333;
+}
 button {
 	min-width: 55px;
 	color: #333;
 	border: 1px solid #ddd;
 	background-color: #f7f7f7;
 }
-button.primary {
+.primary {
 	color: #fff;
 	border: 1px solid #09c;
 	background-color: #09c;
 }
-button.extension {
+.extension {
 	background-color: #DCE2E7;
 	color: #444;
 }
-#filter_method_readme {
-	color: #333;
-}
-div.row_label {
+.row_label {
 	width: 150px;
 	text-align: center;
 	display: inline-block;
