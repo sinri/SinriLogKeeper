@@ -71,12 +71,12 @@ class SinriLogKeeperWorker
 			case 'pure_grep':
 			case 'pure_grep_case_insensitive':
 			case 'egrep':
-				return SinriLogKeeperWorker::filterTargetFile_pure_grep($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines,$command);
+				return SinriLogKeeperWorker::filterTargetFileUsingGrep($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines,$command);
 				break;
 			case 'text':
 			case 'text_case_insensitive':
 			case 'regex':
-				return SinriLogKeeperWorker::filterTargetFile_use_php($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines);
+				return SinriLogKeeperWorker::filterTargetFileUsingPHP($filename,$filter_method,$filter,$line_begin,$line_end,$around_lines);
 				break;
 			default:
 				throw new Exception("总有刁民想害朕。", 1);
@@ -84,7 +84,7 @@ class SinriLogKeeperWorker
 		}
 	}
 
-	private static function filterTargetFile_pure_grep($filename,$filter_method='pure_grep',$filter='',$line_begin=0,$line_end=0,$around_lines=3,&$command=''){
+	private static function filterTargetFileUsingGrep($filename,$filter_method='pure_grep',$filter='',$line_begin=0,$line_end=0,$around_lines=3,&$command=''){
 		setlocale(LC_CTYPE, "en_US.UTF-8");
 		$around_lines=intval($around_lines);
 		if($filter_method=='pure_grep'){
@@ -144,7 +144,7 @@ class SinriLogKeeperWorker
 
 		return $list;
 	}
-	private static function filterTargetFile_use_php($filename,$filter_method='text',$filter='',$line_begin=0,$line_end=0,$around_lines=3){
+	private static function filterTargetFileUsingPHP($filename,$filter_method='text',$filter='',$line_begin=0,$line_end=0,$around_lines=3){
 		$handle = fopen($filename, "r");
 		$list=array();
 		if ($handle) {
