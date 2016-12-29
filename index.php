@@ -68,8 +68,15 @@ $display_data=$SLK_Worker->displayData();
 			$("#filter_method_readme").html(filter_method_mapping[key]['readme']);
 		}
 
+		var search_keyword_timeout=null;
 		function initFileSearcher(){
-			$("#file_select_search").on('keyup',searchInFileSelect);
+			$("#file_select_search").on('keyup',function(){
+				if(search_keyword_timeout){
+					window.clearTimeout(search_keyword_timeout);
+				}
+				let search_keyword=$("#file_select_search").val();
+				search_keyword_timeout=window.setTimeout(searchInFileSelect,1000);
+			});
 		}
 		function searchInFileSelect(){
 			let search_keyword=$("#file_select_search").val();
