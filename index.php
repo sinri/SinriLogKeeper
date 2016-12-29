@@ -180,7 +180,7 @@ $display_data=$SLK_Worker->displayData();
 	</div>
 	<div id="loading_div"></div>
 	<div id="footer_div">
-		<a href="http://github.everstray.com/SinriLogKeeper/">Version 1.3 For Leqee</a> 
+		<a href="http://github.everstray.com/SinriLogKeeper/">Version 1.4 For Leqee</a> 
 		<?php if(!$SLK_Worker->checkUseUserAuth()){ 
 			// echo ""
 		}else{

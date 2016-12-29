@@ -2,7 +2,7 @@
 
 View Log From Machine
 
-Version 1.3 
+Version 1.4 
 [![Code Climate](https://codeclimate.com/github/sinri/SinriLogKeeper/badges/gpa.svg)](https://codeclimate.com/github/sinri/SinriLogKeeper) 
 [![Issue Count](https://codeclimate.com/github/sinri/SinriLogKeeper/badges/issue_count.svg)](https://codeclimate.com/github/sinri/SinriLogKeeper)
 
@@ -53,6 +53,10 @@ So if you found you are using mawk, install gawk instead.
 
 * Add view-around-lines function
 * Download log file (Experimental)
+
+### Since Ver 1.4
+
+* Add file filter on page in order to face too many files. Regex supported.
 
 ## Reason
 
