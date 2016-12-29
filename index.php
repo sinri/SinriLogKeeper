@@ -50,9 +50,11 @@ $display_data=$SLK_Worker->displayData();
 			$("#user_auth_row").css('display','none');
 			<?php }?>
 			writeFilterMethodSelect();
+
+			initFileSearcher();
 		})
 		function writeFilterMethodSelect(){
-			var code="";
+			let code="";
 			for(var key in filter_method_mapping){
 				code+='<option value="'+key+'">'+filter_method_mapping[key]['title']+'</option>';
 			}
@@ -61,9 +63,39 @@ $display_data=$SLK_Worker->displayData();
 			refreshFilterMethodReadme();
 		}
 		function refreshFilterMethodReadme(){
-			var key=$("#filter_method_select").val();
+			let key=$("#filter_method_select").val();
 			console.log('refreshFilterMethodReadme for '+key)
 			$("#filter_method_readme").html(filter_method_mapping[key]['readme']);
+		}
+
+		function initFileSearcher(){
+			$("#file_select_search").on('keyup',searchInFileSelect);
+		}
+		function searchInFileSelect(){
+			let search_keyword=$("#file_select_search").val();
+			let current_selection=$("#file_select").val();
+			console.log(search_keyword);	
+			let option_group_list=$("#file_select").children('optgroup');
+			console.log(option_group_list);
+			for(let i=0;i<option_group_list.length;i++){
+				let option_group=option_group_list[i].children;
+				console.log(option_group)
+				for(let j=0;j<option_group.length;j++){
+					let option=option_group[j];
+					console.log(option);
+					console.log('value of option',option.value);
+					console.log('display of option',option.style.display);
+					if(option.value.search(search_keyword)>=0){
+						//has
+						option.style.display='block';
+					}else{
+						if(option.value==current_selection){
+							$("#file_select").val('');
+						}
+						option.style.display='none';
+					}
+				}
+			}
 		}
 	</script>
 </head>
@@ -93,6 +125,7 @@ $display_data=$SLK_Worker->displayData();
 		</div>
 		<div class="condition_row">
 			<div class='row_label'>File</div>
+			<input id="file_select_search" placeholder="Regex to filter files">
 			<select id="file_select">
 				<option value='null'>Not Loaded Yet</option>
 			</select>
