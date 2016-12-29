@@ -84,14 +84,16 @@ $display_data=$SLK_Worker->displayData();
 			// console.log(search_keyword);
 
 			// console.log($("#file_select option"));
-			$("#file_select option").css('display','none');
-			let k=$("#file_select option").filter(function(mono_index,mono){
-				// console.log('filter',mono_index,mono);
-				return (mono.value.search(search_keyword)>=0);
-			});
-			// console.log(k);
-			for(let j=0;j<k.length;k++){
-				k[j].style.display='block';
+			$("#file_select option").css('display','block');
+			if(search_keyword){
+				let k=$("#file_select option").filter(function(mono_index,mono){
+					// console.log('filter',mono_index,mono);
+					return (mono.value.search(search_keyword)<=0);
+				});
+				// console.log(k);
+				for(let j=0;j<k.length;k++){
+					k[j].style.display='none';
+				}
 			}
 
 			/*
