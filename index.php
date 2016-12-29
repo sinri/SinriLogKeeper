@@ -81,19 +81,27 @@ $display_data=$SLK_Worker->displayData();
 		function searchInFileSelect(){
 			let search_keyword=$("#file_select_search").val();
 			let current_selection=$("#file_select").val();
-			console.log(search_keyword);	
+			// console.log(search_keyword);
+
+			// console.log($("#file_select option"));
+			$("#file_select option").css('display','none');
+			let k=$("#file_select option").filter(function(mono_index,mono){
+				// console.log('filter',mono_index,mono);
+				return (mono.value.search(search_keyword)>=0);
+			});
+			// console.log(k);
+			for(let j=0;j<k.length;k++){
+				k[j].style.display='block';
+			}
+
+			/*
+			// The first method to do this
 			let option_group_list=$("#file_select").children('optgroup');
-			console.log(option_group_list);
 			for(let i=0;i<option_group_list.length;i++){
 				let option_group=option_group_list[i].children;
-				console.log(option_group)
 				for(let j=0;j<option_group.length;j++){
 					let option=option_group[j];
-					console.log(option);
-					console.log('value of option',option.value);
-					console.log('display of option',option.style.display);
 					if(option.value.search(search_keyword)>=0){
-						//has
 						option.style.display='block';
 					}else{
 						if(option.value==current_selection){
@@ -103,6 +111,7 @@ $display_data=$SLK_Worker->displayData();
 					}
 				}
 			}
+			*/
 		}
 	</script>
 </head>
