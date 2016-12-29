@@ -93,6 +93,9 @@ $display_data=$SLK_Worker->displayData();
 				});
 				// console.log(k);
 				for(let j=0;j<k.length;j++){
+					if(k[j].value==current_selection){
+						$("#file_select").val('');
+					}
 					k[j].style.display='none';
 				}
 			}
