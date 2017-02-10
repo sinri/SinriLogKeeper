@@ -3,25 +3,28 @@
  * 这个页面用于加载别的服务器上的SLK
  */
 $instance_list=array(
-	"Common Report"=>"commonreport.slk.leqee.com",
-	"ERP Sync"=>"erpsync.slk.leqee.com",
-	"Finance Report"=>"financereport.slk.leqee.com", 
-	"Operate Center"=>"oc.slk.leqee.com", 
-	"OMS Manager"=>"omsmanager.slk.leqee.com",
-	"OMS Server"=>"omsserver.slk.leqee.com" ,
-	"Romeo"=>"romeo.slk.leqee.com" ,
-	"Gateway"=>"proxy.slk.leqee.com",
-	"Test for Fundament"=>"test.slk.leqee.com",
-	"Test for OMS"=>"testoms.slk.leqee.com",
-	"Test for OMS Manager"=>"testomsmanager.slk.leqee.com",
-	"Test for Web CRM"=>"testwebcrm.slk.leqee.com" ,
-	"Test for WMS (I)"=>"testwms1.slk.leqee.com" ,
-	"Test for WMS (II)"=>"testwms2.slk.leqee.com",
-	"Web CRM"=>"webcrm.slk.leqee.com" ,
-	"WMS Client"=>"wmsclient.slk.leqee.com" ,
-	"WMS"=>"wms.slk.leqee.com",
-	"WMS Wai-I"=>"wmswai1.slk.leqee.com" ,
-	"WMS Wai-II"=>"wmswai2.slk.leqee.com",
+	"Gateway"=>"http://proxy.slk.leqee.com",
+	"ERP"=>"https://ecadmin.leqee.com/admin/filelock/SinriLogKeeper/",
+	"ERP Brand"=>"https://erpbrand.leqee.com/logs/SinriLogKeeper/",
+	"OMS Manager"=>"http://omsmanager.slk.leqee.com",
+	"OMS Server"=>"http://omsserver.slk.leqee.com" ,
+	"Romeo"=>"http://romeo.slk.leqee.com" ,
+	"ERP Sync"=>"http://erpsync.slk.leqee.com",
+	"Common Report"=>"http://commonreport.slk.leqee.com",
+	"Finance Report"=>"http://financereport.slk.leqee.com", 
+	"OC"=>"http://oc.slk.leqee.com", 
+	"BI"=>"http://bi.slk.leqee.com/",
+	"WMS Client"=>"http://wmsclient.slk.leqee.com" ,
+	"WMS"=>"http://wms.slk.leqee.com",
+	"WMS Wai-I"=>"http://wmswai1.slk.leqee.com" ,
+	"WMS Wai-II"=>"http://wmswai2.slk.leqee.com",
+	"Web CRM"=>"http://webcrm.slk.leqee.com" ,
+	"Test for Fundament"=>"http://test.slk.leqee.com",
+	"Test for OMS"=>"http://testoms.slk.leqee.com",
+	"Test for OMS Manager"=>"http://testomsmanager.slk.leqee.com",
+	"Test for Web CRM"=>"http://testwebcrm.slk.leqee.com" ,
+	"Test for WMS (I)"=>"http://testwms1.slk.leqee.com" ,
+	"Test for WMS (II)"=>"http://testwms2.slk.leqee.com",
 );
 ?>
 <!DOCTYPE html>
@@ -30,8 +33,8 @@ $instance_list=array(
 	<title>Gateway - SinriLogKeeper</title>
 	<style type="text/css">
 		div {
-			margin: 5px auto 0 auto;
-			padding: 5px;
+			margin: 2px auto 0 auto;
+			padding: 2px;
 			width: 80%;
 		}
 		#div_header{
@@ -68,7 +71,7 @@ $instance_list=array(
 		<ul>
 			<?php 
 			foreach ($instance_list as $InstanceName => $InstanceURL) {
-				echo "<li><a href='http://{$InstanceURL}' target='_blank'>{$InstanceName}</a></li>";
+				echo "<li>SinriLogKeeper Instance on <a href='{$InstanceURL}' target='_blank'>{$InstanceName}</a></li>";
 			}
 			?>
 		</ul>
