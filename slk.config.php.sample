@@ -1,3 +1,4 @@
+<?php die(); ?>
 # Sinri Log Keeper Config File
 #
 # Note, copy this sample and rename to `slk.config`, and edit for real.
