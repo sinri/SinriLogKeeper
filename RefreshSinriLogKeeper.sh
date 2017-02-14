@@ -17,10 +17,14 @@ else
 	sudo git pull
 fi
 
-if [ -f '/var/www/SinriLogKeeper/slk.config' ] 
-then
-	echo 'Fix the security issue'
+if [ -f '/var/www/SinriLogKeeper/slk.config' ] then
+	echo 'Fix the security issue #1'
 	sudo mv /var/www/SinriLogKeeper/slk.config /var/www/SinriLogKeeper/slk.config.php 
+	
+fi
+if [ -f '/var/www/SinriLogKeeper/slk.config.php' ] then
+	echo 'Fix the security issue #2'
+	sudo php -r '$f="/var/www/SinriLogKeeper/slk.config.php";$txt=file_get_contents($f);if(strpos($txt,"<?php")!==0){file_put_contents($f,"<"."?php_".PHP_EOL.$txt);}'
 fi
 
 echo 'Script ending!'
