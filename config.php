@@ -18,7 +18,7 @@ class SinriLogKeeperConfig
 	{
 		$this->config_path=$config_path;
 		if($config_path==null){
-			$this->config_path=__DIR__.'/slk.config';
+			$this->config_path=__DIR__.'/slk.config.php';
 		}
 
 		$this->useUserAuth=false;
@@ -40,7 +40,7 @@ class SinriLogKeeperConfig
 			$lines=preg_split('/[\n\r]+/', $text);
 			// print_r($lines);die();
 			foreach ($lines as $line) {
-				if(in_array($line[0], array('#',' ',"\t","\r","\n"))){
+				if(in_array($line[0], array('<','#',' ',"\t","\r","\n"))){
 					continue;
 				}
 				elseif(in_array($line[0], array('!'))){
