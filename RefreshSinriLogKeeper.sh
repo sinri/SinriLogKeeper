@@ -24,7 +24,7 @@ if [ -f '/var/www/SinriLogKeeper/slk.config' ] then
 fi
 if [ -f '/var/www/SinriLogKeeper/slk.config.php' ] then
 	echo 'Fix the security issue #2'
-	sudo php -r '$f="/var/www/SinriLogKeeper/slk.config.php";$txt=file_get_contents($f);if(strpos($txt,"<?php")!==0){file_put_contents($f,"<"."?php ".PHP_EOL.$txt);}'
+	sudo php -r '$f="/var/www/SinriLogKeeper/slk.config.php";$txt=file_get_contents($f);if(strpos($txt,"<?php")!==0){file_put_contents($f,"<?php die(); ?>".PHP_EOL.$txt);}'
 fi
 
 echo 'Script ending!'
