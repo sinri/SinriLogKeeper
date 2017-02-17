@@ -25,6 +25,7 @@ $instance_list=array(
 	"Test for Web CRM"=>"http://testwebcrm.slk.leqee.com" ,
 	"Test for WMS (I)"=>"http://testwms1.slk.leqee.com" ,
 	"Test for WMS (II)"=>"http://testwms2.slk.leqee.com",
+	"Express"=>"http://express.slk.leqee.com/",
 );
 ?>
 <!DOCTYPE html>
