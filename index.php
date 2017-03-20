@@ -27,6 +27,7 @@ $instance_list=array(
 	"Test for WMS (II)"=>"http://testwms2.slk.leqee.com",
 	"Express"=>"http://express.slk.leqee.com/",
 	"Job Center"=>"http://jobcenter.slk.leqee.com/",
+	"WMSExpress"=>"http://wmsexpress.slk.leqee.com/",
 );
 ?>
 <!DOCTYPE html>
