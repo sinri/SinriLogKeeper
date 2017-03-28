@@ -21,6 +21,7 @@ $instance_list=array(
 	"Web CRM"=>"http://webcrm.slk.leqee.com" ,
 	"Test for Fundament"=>"http://test.slk.leqee.com",
 	"Test for OMS"=>"http://testoms.slk.leqee.com",
+	"Test for ErpSync"=>"http://testerpsync.slk.leqee.com",
 	"Test for OMS Manager"=>"http://testomsmanager.slk.leqee.com",
 	"Test for Web CRM"=>"http://testwebcrm.slk.leqee.com" ,
 	"Test for WMS (I)"=>"http://testwms1.slk.leqee.com" ,

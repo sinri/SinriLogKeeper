@@ -53,3 +53,5 @@ echo SinriLogKeeper Instance on JobCenter
 ssh admin@10.27.233.59 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
 echo SinriLogKeeper Instance on WMSExpress
 ssh admin@10.30.201.120 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
+echo SinriLogKeeper Instance on TEST for ErpSync
+ssh admin@10.27.62.30 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
