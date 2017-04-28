@@ -40,6 +40,9 @@ class SinriLogKeeperConfig
 			$lines=preg_split('/[\n\r]+/', $text);
 			// print_r($lines);die();
 			foreach ($lines as $line) {
+				if(empty($line)){
+					continue;
+				}
 				if(in_array($line[0], array('<','#',' ',"\t","\r","\n"))){
 					continue;
 				}
