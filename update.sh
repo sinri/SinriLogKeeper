@@ -60,3 +60,17 @@ echo SinriLogKeeper Instance on WMSExpress
 ssh admin@10.30.201.120 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
 echo SinriLogKeeper Instance on TEST for ErpSync
 ssh admin@10.27.62.30 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
+
+echo SinriLogKeeper Instance on OMS V2
+echo omsv2_server
+ssh admin@10.29.113.27 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
+echo omsv2_job
+ssh admin@10.28.146.205 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
+echo omsv2_sync
+ssh admin@10.29.199.85 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
+echo omsv2_wc
+ssh admin@10.30.200.71 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
+echo omsv2_web
+ssh admin@10.29.192.50 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
+
+
