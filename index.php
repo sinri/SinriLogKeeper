@@ -29,6 +29,12 @@ $instance_list=array(
 	"Express"=>"http://express.slk.leqee.com/",
 	"Job Center"=>"http://jobcenter.slk.leqee.com/",
 	"WMSExpress"=>"http://wmsexpress.slk.leqee.com/",
+
+	"OMS V2 JOB"=>"http://omsv2job.slk.leqee.com",
+	"OMS V2 SERVER"=>"http://omsv2server.slk.leqee.com",
+	"OMS V2 SYNC"=>"http://omsv2sync.slk.leqee.com",
+	"OMS V2 WMSCLIENT"=>"http://omsv2wmsclient.slk.leqee.com",
+	"OMS V2 WEB"=>"http://omsv2web.slk.leqee.com",
 );
 ?>
 <!DOCTYPE html>
