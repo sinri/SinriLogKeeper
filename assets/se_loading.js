@@ -7,11 +7,11 @@ var se_loading=function(target_div_id){
 
 	this.show=function(){
 		document.getElementById(target_div_id).style.display='block';
-	}
+    };
 
 	this.hide=function(){
 		document.getElementById(target_div_id).style.display='none';
-	}
+    };
 
 	return this;
-}
+};

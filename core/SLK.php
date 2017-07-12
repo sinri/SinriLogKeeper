@@ -66,7 +66,8 @@ class SLK
     public static function responseFileDownload($file)
     {
         // header("Content-type:text/html;charset=utf-8");
-        $done = downloadFileAsName($file, null, $error);
+        $error = null;
+        $done = self::downloadFileAsName($file, null, $error);
         if (!$done) {
             echo $error;
         }

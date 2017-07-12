@@ -173,10 +173,8 @@ function download_this_file(){
 	var filename=$("#file_select").val();
 
     // var url='api.php?act=download&'
-    var url = 'apiv2.php/download?'
+    window.location.href = 'apiv2.php/download?'
         + 'username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password) + '&filename=' + encodeURIComponent(filename);
-	// window.open(url);
-	window.location.href=url;
 }
 
 function initializePage() {

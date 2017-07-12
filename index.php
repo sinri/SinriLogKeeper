@@ -56,7 +56,7 @@
         }
         function refreshFilterMethodReadme() {
             var key = $("#filter_method_select").val();
-            console.log('refreshFilterMethodReadme for ' + key)
+            console.log('refreshFilterMethodReadme for ' + key);
             $("#filter_method_readme").html(filter_method_mapping[key]['readme']);
         }
 
