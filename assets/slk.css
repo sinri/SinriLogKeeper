@@ -45,7 +45,7 @@ blockquote {
 	margin: 10px;
 	border-top: 1px solid gray;
 	border-bottom: 1px solid gray;
-	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, "Microsoft YaHei";
+	font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, "Microsoft YaHei", serif;
 }
 #controller_pane .condition_row{
 	margin: 10px 0;
