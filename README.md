@@ -2,7 +2,7 @@
 
 View Log From Machine
 
-Version 1.4 
+Version 2.0 
 [![Code Climate](https://codeclimate.com/github/sinri/SinriLogKeeper/badges/gpa.svg)](https://codeclimate.com/github/sinri/SinriLogKeeper) 
 [![Issue Count](https://codeclimate.com/github/sinri/SinriLogKeeper/badges/issue_count.svg)](https://codeclimate.com/github/sinri/SinriLogKeeper)
 
@@ -57,6 +57,10 @@ So if you found you are using mawk, install gawk instead.
 ### Since Ver 1.4
 
 * Add file filter on page in order to face too many files. Regex supported.
+
+### Since Ver 2.0
+
+* This project is redesigned to fit Composer Package System.
 
 ## Reason
 

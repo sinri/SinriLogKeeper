@@ -1,0 +1,15 @@
+{
+  "name": "sinri/SinriLogKeeper",
+  "description": "Sinri Log Keeper",
+  "minimum-stability": "stable",
+  "license": "GPLv2",
+  "authors": [
+    {
+      "name": "Sinri Edogawa",
+      "email": "ljni@leqee.com"
+    }
+  ],
+  "require": {
+    "sinri/enoch": "^1.5"
+  }
+}
