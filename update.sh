@@ -47,6 +47,8 @@ echo SinriLogKeeper Instance on Test for WMS I
 ssh admin@10.24.239.236 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
 echo SinriLogKeeper Instance on Test for WMS II
 ssh admin@10.27.10.243 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
+echo SinriLogKeeper Instance on Test for WMS BI
+ssh admin@10.80.59.183 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
 
 echo SinriLogKeeper Instance on Express
 echo " - EXPRESS-SERVICE-1"
