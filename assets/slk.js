@@ -1,8 +1,8 @@
 function loadFiles(){
 	// $("#file_select").html("<option value='1'>I</option><option value='2'>II</option>")
 	$.ajax({
-        url: 'apiv2.php/load_files',
-        //url:'api.php?act=load_files',
+        //url: 'apiv2.php/load_files',
+        url: 'api.php?act=load_files',
 		dataType:'json'
 	}).done(function(obj){
 		if(obj.code==='ok'){
@@ -85,8 +85,8 @@ function searchWithFilterParmas(params,can_back){
 	var time_start=new Date().getTime();
 	se_loading_instance.show();
 	$.ajax({
-        // url:'api.php?act=search_file',
-        url: 'apiv2.php/search_file',
+        url: 'api.php?act=search_file',
+        // url: 'apiv2.php/search_file',
 		method:'POST',
 		data:params,
 		dataType:'json'
@@ -173,14 +173,15 @@ function download_this_file(){
 	var filename=$("#file_select").val();
 
     // var url='api.php?act=download&'
-    window.location.href = 'apiv2.php/download?'
+    window.location.href = 'api.php?act=download&'
+        // 'apiv2.php/download?'
         + 'username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password) + '&filename=' + encodeURIComponent(filename);
 }
 
 function initializePage() {
     $.ajax({
-        //url:'api.php?act=initializePage',
-        url: 'apiv2.php/initializePage',
+        url: 'api.php?act=initializePage',
+        // url: 'apiv2.php/initializePage',
         dataType: 'json'
     }).done(function (res) {
         console.log(res);
