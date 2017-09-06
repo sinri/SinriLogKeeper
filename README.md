@@ -33,7 +33,7 @@ So if you found you are using mawk, install gawk instead.
 	# check which awk you use
 	ls -alh `ls -alh \`which awk\` | awk '{print $11}'`
 	# if you were using mawk
-	app-get install gawk
+	apt-get install gawk
 
 ## Features Footprints
 
