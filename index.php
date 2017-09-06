@@ -202,6 +202,8 @@
     Note: SinriLogKeeper uses
     <a href="http://www.ecma-international.org/ecma-262/6.0/#sec-let-and-const-declarations">ES6</a>,
     please use Chrome 41, Edge 12, Firefox 44, IE 11, Opera 17, Safari 10, or later versions of each.
+    <br>
+    <span id="awk_info_span"></span>
 </div>
 <div id="ad_div" style="text-align:center">
     <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>

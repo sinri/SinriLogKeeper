@@ -60,9 +60,22 @@ if($act==='load_files'){
     $display_data = $SLK_Worker->displayData();
     $maxResultLineCount = $SLK_Worker->getMaxResultLineCount();
 
+    $awk_info = 'AWK might not be available.';
+    if (in_array(PHP_OS, ["Linux"])) {
+        // unix family?
+        exec("awk -W version", $output);
+        if (!empty($output) && is_array($output)) {
+            $awk_info = $output[0];
+        }
+    } elseif (PHP_OS == 'Darwin') {
+        $awk_info = 'AWK embedded within MacOS';
+    }
+
     \sinri\SinriLogKeeper\core\SLK::sayOK([
         'useUserAuth' => $useUserAuth,
         'display_data' => $display_data,
         'maxResultLineCount' => $maxResultLineCount,
+        'OS' => PHP_OS,
+        'awk_info' => $awk_info,
     ]);
 }

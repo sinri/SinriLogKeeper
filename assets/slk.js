@@ -201,6 +201,7 @@ function initializePage() {
             }
             $("#maxResultLineCount").html(display_data.maxResultLineCount);
 
+            $("#awk_info_span").html("AWK Support: " + res.data.awk_info);
         }
     })
 }
