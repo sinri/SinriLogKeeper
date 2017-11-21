@@ -60,6 +60,9 @@ ssh admin@10.25.7.167 'curl -L https://raw.githubusercontent.com/sinri/SinriLogK
 
 echo SinriLogKeeper Instance on JobCenter
 ssh admin@10.27.233.59 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
+echo SinriLogKeeper Instance on JobCenter2
+ssh admin@10.24.233.245 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
+
 echo SinriLogKeeper Instance on WMSExpress
 ssh admin@10.30.201.120 'curl -L https://raw.githubusercontent.com/sinri/SinriLogKeeper/gateway/RefreshSinriLogKeeper.sh | bash'
 echo SinriLogKeeper Instance on TEST for ErpSync
